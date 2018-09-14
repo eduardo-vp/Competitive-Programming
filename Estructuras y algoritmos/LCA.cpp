@@ -1,40 +1,33 @@
   
 
 
-void process3(int N, int T[MAXN], int P[MAXN][LOGMAXN]){
-      int i, j;
-  //we initialize every element in P with -1
-      for (i = 0; i < N; i++)
-          for (j = 0; 1 << j < N; j++)
-              P[i][j] = -1;
-  //the first ancestor of every node i is T[i]
-      for (i = 0; i < N; i++)
-          P[i][0] = T[i];
-  //bottom up dynamic programing
-      for (j = 1; 1 << j < N; j++)
-         for (i = 0; i < N; i++)
-             if (P[i][j - 1] != -1)
-                 P[i][j] = P[P[i][j - 1]][j - 1];
+int __lca(int a, int b){
+	if(dep[a] < dep[b]) swap(a,b);
+	for(int j = LG-1; j >= 0; --j)
+		if( dep[a]-(1<<j) >= dep[b] )
+			a = p[a][j];
+	if(a == b) return a;
+	for(int j = LG-1; j >= 0; --j)
+		if(p[a][j] != p[b][j])
+			a = p[a][j], b = p[b][j];
+	return pai[a];
 }
 
-int query(int N, int P[MAXN][LOGMAXN], int T[MAXN], int L[MAXN], int p, int q){
-      int tmp, log, i;
-    //if p is situated on a higher level than q then we swap them
-      if (L[p] < L[q])
-      	swap(p,q);
-  //we compute the value of [log(L[p)] - can use also LGMAX-1
-      for (log = 1; 1 << log <= L[p]; log++);
-      log--;
-  //we find the ancestor of node p situated on the same level
-  //with q using the values in P
-      for (i = log; i >= 0; i--)
-          if (L[p] - (1 << i) >= L[q])
-              p = P[p][i];
-      if (p == q)
-          return p;
-  //we compute LCA(p, q) using the values in P
-      for (i = log; i >= 0; i--)
-          if (P[p][i] != -1 && P[p][i] != P[q][i])
-              p = P[p][i], q = P[q][i];
-      return T[p];
+int dist(int a, int b){
+	int lca = __lca(a,b);
+	return dep[a] + dep[b] - 2 * dep[lca];
+}
+
+void build(){
+	for(int i = 1; i <= n; ++i)
+		for(int j = 0; j < LG; ++j)
+			p[i][j] = -1;
+	
+	for(int i = 1; i <= n; ++i)
+		p[i][0] = pai[i];
+	
+	for(int j = 1; j < LG; ++j)
+		for(int i = 1; i <= n; ++i)
+			if(p[i][j-1] != -1)
+				p[i][j] = p[p[i][j-1]][j-1];
 }
