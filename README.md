@@ -8,3 +8,4 @@ Zeldas poderosos
 - https://github.com/bqi343/USACO
 - https://crypto.stanford.edu/pbc/notes/numbertheory/
 - https://people.inf.elte.hu/fekete/algoritmusok_msc/terinfo_geom/konyvek/Computational%20Geometry%20-%20Algorithms%20and%20Applications,%203rd%20Ed.pdf
+- https://codeforces.com/blog/entry/57282?fbclid=IwAR3MvApNx0koP87nJ4uCZzmxVAAKLVIDkRL_a_CXOC0YWiA39IOADb37YhE
