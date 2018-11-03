@@ -44,8 +44,9 @@ template<typename t1, typename... t2> void f(char* x, t1&& val1, t2&&... val2){
 }
 //------------splay tree data structure----------
 // 3 types of queries:
-// modify, reverse, and sum;
-// all queries 0 base
+// modify, reverse, sum and move;
+// all queries 0 base, !r: reverse
+//move querie : l< r < l1 < r1
 struct Node{
 	Node *child[2], *p;
 	bool r;
@@ -132,6 +133,14 @@ struct SplayTree{
 		t2->r=!t2->r;
 		root=unir(unir(t1, t2), t3);
 	}
+	inline void move(ll l, ll r, ll l1, ll r1){
+		Node *t1, *t2, *t3, *t4, *t5;
+		split(root, r1, t4, t5);
+		split(t4, l1, t3, t4);
+		split(t3, r, t2, t3);
+		split(t2, l, t1, t2);
+		root=unir(unir(t1,unir(t4, t3)), unir(t2, t5));
+	}
 	inline ll que(ll l, ll r){
 		Node *t1, * t2, *t3;
 		split(root, r, t1, t3);
@@ -165,14 +174,18 @@ int main(){
 	spytree.n=n;
 	spytree.preprocess();
 	spytree.build();
-	char type; ll l, r;
+	char type; ll l, r, l1, r1;
 	FER(i,0,q){
 		cin>>type>>l>>r; l--;
 		if(type=='S') spytree.modify(l, r);
 		else if(type=='R') spytree.Reverse(l, r);
-		else {
+		else if(type=='Q'){
 			ll froz=spytree.que(l, r);
 			trace(froz);
+		}
+		else{
+			cin>>l1>>r1; l1--;
+			spytree.move(l, r, l1, r1);
 		}
 	}
 	return 0;
