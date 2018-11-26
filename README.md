@@ -11,3 +11,4 @@ Zeldas poderosos
 - https://codeforces.com/blog/entry/57282?fbclid=IwAR3MvApNx0koP87nJ4uCZzmxVAAKLVIDkRL_a_CXOC0YWiA39IOADb37YhE
 - https://codeforces.com/blog/entry/13529
 - https://codeforces.com/blog/entry/23054
+- https://cp-algorithms.com/string/string-hashing.html#toc-tgt-3
