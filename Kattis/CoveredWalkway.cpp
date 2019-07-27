@@ -1,3 +1,7 @@
+/*
+	Convex Hull Trick
+*/
+
 // dile a la jardinera que traigo flores
 // corner cases // int vs ll // cin vs scanf
 #include <bits/stdc++.h>
