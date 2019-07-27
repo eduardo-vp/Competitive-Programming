@@ -31,4 +31,5 @@ struct HullDynamic : public multiset<Line> {
     ll eval(ll x) {
         auto l = *lower_bound((Line) { x, is_query });
         return l.m * x + l.b;
-    
+    }
+};
