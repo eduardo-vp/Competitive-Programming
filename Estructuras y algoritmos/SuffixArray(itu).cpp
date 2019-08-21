@@ -29,11 +29,10 @@ void fit_index(int b, int e){
 	lastpk = p[r[b]+t];
 	d = b;
 	FER(i,b,e){
-		if(((pk = p[r[i]+t]) != lastpk)
-			and (b > lastpk or pk >= e)){
+		if(((pk = p[r[i]+t]) != lastpk) and (b > lastpk or pk >= e)){
 				lastpk = pk;
 				d = i;
-			}
+		}
 		p[r[i]] = d;
 	}
 }
@@ -58,7 +57,7 @@ void suff_arr(){
 	}
 }
 
-void initlcp(){
+void init_lcp(){
 	int tam = 0, j;
 	FER(i,0,n-1){
 		j = r[p[i]-1];
@@ -68,8 +67,8 @@ void initlcp(){
 	}
 }
 
-void makelcp(){
-	initlcp();
+void make_lcp(){
+	init_lcp();
 	FER(i,0,n-1) rmq[0][i] = h[i];
 	int lg = 0, pw = 1;
 	do{
@@ -95,6 +94,6 @@ int main(){
 	s += '$';
 	n = sz(s);
 	suff_arr();
-	makelcp();
+	make_lcp();
 	return 0;
 }
