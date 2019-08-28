@@ -1,4 +1,3 @@
-
 #define N 100005
 /* Considerar el alfabeto valido en el problema 
    para limpiar los arreglos */
@@ -10,19 +9,19 @@ vector<int> leaf[N];
 
 int add_string(string &s, int id){
 	int u = 0;
-	for(char c : s){
-		if(t[u][c] == -1){ 
-			t[u][c] = n++;
+	for(char ch : s){
+		if(t[u][ch] == -1){ 
+			t[u][ch] = n++;
 			p[n-1] = u;
 		}
-		u = t[u][c];
-		pch[u] = c;
+		u = t[u][ch];
+		pch[u] = ch;
 	}
 	leaf[u].pb(id);
 	return u;
 }
 
-int go(int v, char c);
+int go(int v, char ch);
 
 int get_link(int v){
 	if(link[v] == -1){
@@ -32,12 +31,12 @@ int get_link(int v){
 	return link[v];
 }
 
-int go(int v, char c){
-	if(gt[v][c] == -1){
-		if(t[v][c] != -1) gt[v][c] = t[v][c];
-		else gt[v][c] = (v == 0) ? 0 : go(get_link(v),c);
+int go(int v, char ch){
+	if(gt[v][ch] == -1){
+		if(t[v][ch] != -1) gt[v][ch] = t[v][ch];
+		else gt[v][ch] = (v == 0) ? 0 : go(get_link(v),ch);
 	}
-	return gt[v][c];
+	return gt[v][ch];
 }
 
 int main(){
@@ -49,4 +48,3 @@ int main(){
 
 	return 0;
 }
-
