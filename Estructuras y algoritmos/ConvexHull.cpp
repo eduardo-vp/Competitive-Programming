@@ -30,7 +30,7 @@ vector<ii> convexHull(vector<ii> &P){
 	bot.pop_back();
 
 	vector<ii> up = {P[n-1]};
-	for(int i = n-1; i >= 0; --i){
+	for(int i = n-2; i >= 0; --i){
 		while(sz(up) > 1 and cross(up[sz(up)-2],up.back(),P[i]) <= 0)
 			up.pop_back();
 		up.pb(P[i]);
