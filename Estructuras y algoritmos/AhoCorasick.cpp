@@ -1,50 +1,67 @@
-#define N 100005
-/* Considerar el alfabeto valido en el problema 
-   para limpiar los arreglos */
+#include <bits/stdc++.h>
+#define pb push_back
+#define fill(x,v) memset(x,v,sizeof(x))
+#define sz(x) int(x.size())
+using namespace std;
 
-int n;
-char pch[N];
-int t[N][130],gt[N][130],link[N],p[N];
-vector<int> leaf[N];
+/* Considerar el tamanho del alfabeto */
+/* Implementacion para letras minusculas */
 
-int add_string(string &s, int id){
-	int u = 0;
-	for(char ch : s){
-		if(t[u][ch] == -1){ 
-			t[u][ch] = n++;
-			p[n-1] = u;
+#define N 1000100
+
+struct AhoCorasick{
+
+	int cnt;
+	char pch[N];
+	int t[N][27],gt[N][27],link[N],slink[N],p[N];
+	vector<int> leaf[N];
+
+	AhoCorasick(){
+		cnt = 1;
+		fill(t,-1);
+		fill(gt,-1);
+		fill(link,-1);
+		fill(slink,-1);
+	}
+
+	void add_string(string &s, int id){
+		int u = 0;
+		for(char ch : s){
+			int c = ch - 'a';
+			if(t[u][c] == -1){
+				t[u][c] = cnt++;
+				p[cnt-1] = u;
+			}
+			u = t[u][c];
+			pch[u] = ch;
 		}
-		u = t[u][ch];
-		pch[u] = ch;
+		leaf[u].pb(id);
 	}
-	leaf[u].pb(id);
-	return u;
-}
 
-int go(int v, char ch);
-
-int get_link(int v){
-	if(link[v] == -1){
-		if(!v or !p[v]) link[v] = 0;
-		else link[v] = go(get_link(p[v]),pch[v]);
+	int get_link(int v){
+		if(link[v] == -1){
+			if(!v or !p[v]) link[v] = 0;
+			else link[v] = go(get_link(p[v]),pch[v]);
+		}
+		return link[v];
 	}
-	return link[v];
-}
 
-int go(int v, char ch){
-	if(gt[v][ch] == -1){
-		if(t[v][ch] != -1) gt[v][ch] = t[v][ch];
-		else gt[v][ch] = (v == 0) ? 0 : go(get_link(v),ch);
+	int go(int v, char ch){
+		int c = ch - 'a';
+		if(gt[v][c] == -1){
+			if(t[v][c] != -1) gt[v][c] = t[v][c];
+			else gt[v][c] = (v == 0) ? 0 : go(get_link(v),ch);
+		}
+		return gt[v][c];
 	}
-	return gt[v][ch];
-}
 
-int main(){
-
-	n = 1;
-	fill(t,-1);
-	fill(gt,-1);
-	fill(link,-1);
-
-	return 0;
-}
+	int get_superlink(int u){
+		if(slink[u] == -1){
+			int lk = get_link(u);
+			if(lk == 0) slink[u] = 0;
+			else if(sz(leaf[lk])) slink[u] = lk;
+			else slink[u] = get_superlink(lk);
+		}
+		return slink[u];
+	}
+};
