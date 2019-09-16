@@ -18,6 +18,7 @@ struct AhoCorasick{
 
 	AhoCorasick(){
 		cnt = 1;
+		p[0] = 0;
 		fill(t,-1);
 		fill(gt,-1);
 		fill(link,-1);
