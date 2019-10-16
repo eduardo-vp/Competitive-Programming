@@ -12,3 +12,4 @@ Zeldas poderosos
 - https://codeforces.com/blog/entry/13529
 - https://codeforces.com/blog/entry/23054
 - https://www.youtube.com/channel/UCBr_Fu6q9iHYQCh13jmpbrg
+- http://acm.math.spbu.ru/~sk1/mm/lections/mipt2016-sqrt/mipt-2016-burunduk1-sqrt.en.pdf
