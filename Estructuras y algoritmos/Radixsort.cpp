@@ -1,6 +1,7 @@
 // sort a vector of tuples (represented as vectors)
+// it can return a vector of pair<vector,int> where pair.second = initial position
 
-void Radixsort(vector< vector<int> > &vec){
+vector< vector<int> > Radixsort(vector< vector<int> > &vec){
 	int lmax = 0, m = 0;
 	for(vector<int> &v : vec){
 		lmax = max(lmax,sz(v));
@@ -31,7 +32,7 @@ void Radixsort(vector< vector<int> > &vec){
 		int x = dq.front(); dq.pop_front();
 		ans[i] = vec[x];
 	}
-	vec = ans;
+	return ans;
 }
 
 
