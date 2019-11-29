@@ -1,4 +1,6 @@
 
+// Gracias MarcosK
+
 struct node{
 	int mx,mn,sum;
 	node(){}
