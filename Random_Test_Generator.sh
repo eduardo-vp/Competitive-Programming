@@ -14,6 +14,15 @@ for((i = 1; ; i++)); do
 	./gen $i > test
 	./ac < test > out1
 	./main < test > out2
+	
+	# Para chequear que no de RTE
+	if [ $? -eq 0 ]
+	then
+		echo "Ok"
+	else
+		break
+	fi
+	# Para chequear igualdad de output
 	diff -w out1 out2 || break
 	((count++))
 done
