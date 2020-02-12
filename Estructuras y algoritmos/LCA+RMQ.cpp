@@ -1,3 +1,5 @@
+// Construccion en O(n) y query en O(1)
+// usa la lista de adyacencia adj
 struct LCA{
 	int n;
 	ii node[N], rmq[N][LGMAX];
