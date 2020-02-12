@@ -1,23 +1,13 @@
-#define N 100050
-#define LGMAX 18
-vector<int> adj[N];
-
-// construccion en O(n) y query en O(1)
-// usa la lista de adyacencia adj
 struct LCA{
 	int n;
 	ii node[N], rmq[N][LGMAX];
 	int id[N],flog[N];
 	LCA(){
-		flog[1] = 0;
-		for(int i = 2; i < N; ++i){
-			flog[i] = flog[i/2] + 1;
-		}
-	}
-	void build(){ 
 		n = 0;
 		dfs(1);
 		buildRmq();
+		flog[1] = 0;
+		REP(i,2,N) flog[i] = flog[i/2] + 1;
 	}
 	void dfs(int u, int p = -1, int d = 0){
 		id[u] = n;
