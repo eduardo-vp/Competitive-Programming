@@ -50,9 +50,10 @@ struct CentroidD{
 	void init(int _n){
 		n = _n;
 		dfs(1,-1);
+		fill(cpar,-1);
 		decomp(1,-1,tsz[1],-2);
 		/*
-		fill(P,-1); fill(cpar,-1);
+		fill(P,-1); 
 		for(int i = 1; i <= n; ++i)ans[i] = 1e9;
 		buildLca();
 		update(1);
