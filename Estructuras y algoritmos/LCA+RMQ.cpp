@@ -1,11 +1,9 @@
-#define N 100
-#define LGMAX 100
-
+#define N 100050
+#define LGMAX 18
 vector<int> adj[N];
 
 // construccion en O(n) y query en O(1)
-
-// usa el grafo de adyacencia adj
+// usa la lista de adyacencia adj
 struct LCA{
 	int n;
 	ii node[N], rmq[N][LGMAX];
