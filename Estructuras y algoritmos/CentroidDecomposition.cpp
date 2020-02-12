@@ -1,5 +1,7 @@
 /* Solution to Xenia and Tree : https://codeforces.com/contest/342/problem/E */
 /* Main functions: Dfs, Decomp, Init */
+// Commented part is for the problem, the other part is Centroid Decomposition itself
+
 // dile a la jardinera que traigo flores
 // corner cases // int vs ll // cin vs scanf // clear structures // statement // doublesz
 #include <bits/stdc++.h>
@@ -15,16 +17,54 @@ using namespace std;
 typedef long long ll;
 typedef pair<int,int> ii;
 
+vector<int> adj[N];
+
 struct CentroidD{
 	int n;
-	int dep[N],P[N][LG],cpar[N],tsz[N],ans[N];
-	vector<int> adj[N];
+	int cpar[N],tsz[N];
 	
+	int dfs(int u, int p){
+		tsz[u] = 1;
+		for(int v : adj[u]) if(v != p and cpar[v] == -1){
+			tsz[u] += dfs(v,u);
+		}
+		return tsz[u];
+	}
+
+	void decomp(int u, int p, int sb, int prevc){
+		for(int v : adj[u]){
+			if(v != p and cpar[v] == -1 and 2*tsz[v] > sb){
+				decomp(v,u,sb,prevc);
+				return;
+			}
+		}
+		cpar[u] = prevc; // careful if prevc == -2
+		for(int v : adj[u]){
+			if(cpar[v] == -1){
+				dfs(v,u);
+				decomp(v,u,tsz[v],u);
+			}
+		}
+	}
+	
+	void init(int _n){
+		n = _n;
+		dfs(1,-1);
+		decomp(1,-1,tsz[1],-2);
+		/*
+		fill(P,-1); fill(cpar,-1);
+		for(int i = 1; i <= n; ++i)ans[i] = 1e9;
+		buildLca();
+		update(1);
+		*/
+	}
+	
+	/*
+	int dep[N],P[N][LG],ans[N];
 	void addEdge(int a, int b){
 		adj[a].pb(b);
 		adj[b].pb(a);
 	}
-	
 	void buildLca(int u = 1, int pai = -1, int d = 0){
 		dep[u] = d;
 		P[u][0] = pai;
@@ -50,31 +90,6 @@ struct CentroidD{
 	int dist(int a, int b){
 		return dep[a] + dep[b] - 2*dep[__lca(a,b)];
 	}
-
-	int dfs(int u, int p){
-		tsz[u] = 1;
-		for(int v : adj[u]) if(v != p and cpar[v] == -1){
-			tsz[u] += dfs(v,u);
-		}
-		return tsz[u];
-	}
-
-	void decomp(int u, int p, int sb, int prevc){
-		for(int v : adj[u]){
-			if(v != p and cpar[v] == -1 and 2*tsz[v] > sb){
-				decomp(v,u,sb,prevc);
-				return;
-			}
-		}
-		cpar[u] = prevc;
-		for(int v : adj[u]){
-			if(cpar[v] == -1){
-				dfs(v,u);
-				decomp(v,u,tsz[v],u);
-			}
-		}
-	}
-
 	void query(int u){
 		int resp = 1e9,x = u;
 		while(u != -2){
@@ -91,17 +106,8 @@ struct CentroidD{
 			u = cpar[u];
 		}
 	}
-
-	void init(int _n){
-		n = _n;
-		fill(P,-1); fill(cpar,-1);
-		for(int i = 1; i <= n; ++i)
-			ans[i] = 1e9;
-		buildLca();
-		dfs(1,-1);
-		decomp(1,-1,tsz[1],-2);
-		update(1);
-	}
+	*/
+	
 };
 
 CentroidD cd;
