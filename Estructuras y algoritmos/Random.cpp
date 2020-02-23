@@ -11,7 +11,6 @@ using namespace std;
 typedef long long ll;
 typedef pair<int,int> ii;
 
-
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 // for 64 bit
 //mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
@@ -24,12 +23,10 @@ int main(){
 	iota(perm.begin(),perm.end(),0);
 	shuffle(perm.begin(),perm.end(),rng);
 	for(int x : perm) cout << x << " "; cout << endl;
-	
 	 
 	// measure time
-	while( (clock()<=2.7*CLOCKS_PER_SEC) ){
-		// do sth
+	while( (clock()<=2.7*CLOCKS_PER_SEC) ){	
+		// do sth 
 	}
-	
 	return 0;
 }
