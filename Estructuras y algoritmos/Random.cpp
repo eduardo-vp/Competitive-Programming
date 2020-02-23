@@ -11,11 +11,13 @@ using namespace std;
 typedef long long ll;
 typedef pair<int,int> ii;
 
+
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+// for 64 bit
+//mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
+
 int main(){
 
-	mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-	// for 64 bit
-	//mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 	cout << rng() << endl;
 	
 	vector<int> perm(10);
