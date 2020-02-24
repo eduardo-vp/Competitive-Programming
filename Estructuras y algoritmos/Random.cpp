@@ -25,7 +25,8 @@ int main(){
 	for(int x : perm) cout << x << " "; cout << endl;
 	 
 	// measure time
-	while( (clock()<=2.7*CLOCKS_PER_SEC) ){	
+	auto cl_start = clock();
+	while( (clock()-cl_start)<=2.7*CLOCKS_PER_SEC ){	
 		// do sth 
 	}
 	return 0;
