@@ -1,4 +1,5 @@
 // Implementation used in problem https://codeforces.com/gym/100551/problem/E
+// Each query is: add an edge to the graph, remove an edge of the graph or query for number of connected components
 // Call go(0,number_of_queries,edges,number_of_nodes,0)
 // edges -> vector<Edge> where each Edge means: an edge connecting u and v exists in [l,r)
 // if(cnt[q] != cnt[q+1]) => ans[q] stores how many connected components the graph has in that query
