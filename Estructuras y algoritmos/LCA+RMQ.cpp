@@ -15,7 +15,7 @@ struct LCA{
 		id[u] = n;
 		node[n++] = {d,u};
 		for(int v : adj[u]) if(v != p){
-			dfs(v,u);
+			dfs(v,u,d+1);
 			node[n++] = {d,u};
 		}
 	}
