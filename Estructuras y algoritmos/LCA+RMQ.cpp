@@ -1,4 +1,4 @@
-// Construccion en O(n) y query en O(1)
+// Construccion en O(n lg n) y query en O(1)
 // usa la lista de adyacencia adj
 // ciudado con el tamanho de LGMAX
 struct LCA{
