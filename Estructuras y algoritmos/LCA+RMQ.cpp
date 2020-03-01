@@ -10,7 +10,7 @@ struct LCA{
 		dfs(1);
 		buildRmq();
 		flog[1] = 0;
-		REP(i,2,N) flog[i] = flog[i/2] + 1;
+		REP(i,2,n+1) flog[i] = flog[i/2] + 1;
 	}
 	void dfs(int u, int p = -1, int d = 0){
 		id[u] = n;
