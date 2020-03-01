@@ -1,11 +1,12 @@
 // Construccion en O(n lg n) y query en O(1)
 // usa la lista de adyacencia adj
 // ciudado con el tamanho de LGMAX
+// llamar build()
 struct LCA{
 	int n;
 	ii node[3*N], rmq[3*N][LGMAX];
 	int id[3*N],flog[3*N];
-	LCA(){
+	void build(){
 		n = 0;
 		dfs(1);
 		buildRmq();
