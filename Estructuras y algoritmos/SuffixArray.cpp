@@ -60,10 +60,11 @@ struct SuffixArray{
 
 	void make_lcp(){
 		init_lcp();
+		flog2[1] = 0;
 		REP(i,0,n-1) rmq[0][i] = h[i];
+		REP(i,2,n+1) flog[i] = flog[i<<1] + 1;
 		int lg = 0, pw = 1;
 		do{
-			REP(i,pw,2*pw) flog2[i] = lg;
 			lg++, pw *= 2;
 			REP(i,0,n-1){
 				if(i+pw/2 < n-1) rmq[lg][i] = min(rmq[lg-1][i],rmq[lg-1][i+pw/2]);
