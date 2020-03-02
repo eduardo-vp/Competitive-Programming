@@ -1,5 +1,5 @@
 
-// finds the point to rotate to make s has the smallests values first
+// finds the point to shift s to make it its lexicographical smallest cyclic shift
 int min_rotation(vl s) {
 	int a=0, N=sz(s); 
 	s.insert(s.end(),all(s));
