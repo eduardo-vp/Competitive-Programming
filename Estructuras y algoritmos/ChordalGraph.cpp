@@ -2,7 +2,7 @@
 // Call ac(n) to check if it's a chordal graph
 // Array pos[N] has the Perfect elimination order if true
 
-struct ChordGraph{
+struct Chordal{
 	vector<int> adj[N], a[N];
 	int qu[N], pos[N], l[N], r[N], c[N];
 	bool ac(int n) {
