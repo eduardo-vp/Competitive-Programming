@@ -30,6 +30,16 @@ And finally: using well-known modulos is not an issue, as long as you use random
 (guaranteed by Schwartz–Zippel lemma).
 */
 
+// to use in unordered_set or unordered_map to hash pair<int,int>
+struct HASH{
+  size_t operator()(const pair<int,int>&x)const{
+    return ((long long)x.first)^(((long long)x.second)<<32);
+  }
+};
+
+unordered_set<ii,HASH> x;
+unordered_map<ii,int,HASH> y;
+
 // Gracias el vasito
 struct Hash {
 	int P=1777771,MOD[2],PI[2];
