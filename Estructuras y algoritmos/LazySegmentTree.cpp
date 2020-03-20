@@ -3,7 +3,7 @@
 
 struct STree{ // example: range sum with range addition
 	vector<int> st,lazy;int n;
-	STree1(int n): st(4*n+5,0), lazy(4*n+5,0), n(n) {}
+	STree(int n): st(4*n+5,0), lazy(4*n+5,0), n(n) {}
 	void init(int k, int s, int e, int *a){
 		lazy[k]=0;  // lazy neutral element
 		if(s+1==e){st[k]=a[s];return;}
