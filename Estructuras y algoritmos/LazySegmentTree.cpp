@@ -1,5 +1,5 @@
 
-// Gracias MarcosK
+// Gracias el vasito
 
 struct STree{ // example: range sum with range addition
 	vector<int> st,lazy;int n;
