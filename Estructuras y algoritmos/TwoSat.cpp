@@ -1,39 +1,38 @@
-struct TwoSat {
-	int N;
-	vector< vector<int> > gr;
+struct TwoSat{
+	int n;
+	vector< vector<int> > adj;
 	vector<int> values;
-	
-	TwoSat(int n = 0) : N(n), gr(2*n) {}
-	
-	void either(int f, int j) {
-		f = max(2*f, -1-2*f);
-		j = max(2*j, -1-2*j);
-		gr[f^1].push_back(j);
-		gr[j^1].push_back(f);
+
+	TwoSat(int n) : n(n), adj(2*n){}
+
+	void either(int x, int y){
+		x = max(2*x, -(2*x+1));
+		y = max(2*y, -(2*y+1));
 	}
-	
-  int time = 0;
-	vector<int> val, comp, z; 
-	int dfs(int i) {
-		int low = val[i] = ++time, x; 
-    z.push_back(i);
-		for(int e : gr[i]) if (!comp[e])
-			low = min(low, val[e] ?: dfs(e));
-		++ time;
-		if (low == val[i]) do {
+
+	int time = 0;
+	vector<int> val,comp,z;
+	int dfs(int u){
+		int low = val[u] = ++time, x;
+		z.pb(u);
+		for(int v : adj[u]) if(!comp[v])
+			low = min(low,val[v] ?: dfs(v));
+		++time;
+		if(low == val[u]) do{
 			x = z.back(); z.pop_back();
 			comp[x] = time;
-			if (values[x>>1] == -1)
-				values[x>>1] = !(x & 1);
-		} while (x != i);
-		return val[i] = low;
+			if(values[x >> 1] == -1)
+				values[x >> 1] = !(x & 1);
+		}while(x != u);
+		return val[u] = low;
 	}
-	
-	bool solve() {
-		values.assign(N, -1);
-		val.assign(2*N, 0); comp = val;
-		REP(i,0,2*N) if (!comp[i]) dfs(i);
-		REP(i,0,N) if (comp[2*i] == comp[2*i+1]) return 0;
+
+	bool solve(){
+		values.assign(n,-1);
+		val.assign(2*n,0); comp = val;
+		REP(i,0,2*n) if(!comp[i]) dfs(i);
+		REP(i,0,n) if(comp[2*i] == comp[2*i+1]) return 0;
 		return 1;
 	}
+
 };
