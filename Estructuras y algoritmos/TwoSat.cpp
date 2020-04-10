@@ -14,6 +14,7 @@ struct TwoSat{
 
 	int time = 0;
 	vector<int> val,comp,z;
+	
 	int dfs(int u){
 		int low = val[u] = ++time, x;
 		z.pb(u);
@@ -28,7 +29,6 @@ struct TwoSat{
 		}while(x != u);
 		return val[u] = low;
 	}
-
 	bool solve(){
 		values.assign(n,-1);
 		val.assign(2*n,0); comp = val;
@@ -36,5 +36,4 @@ struct TwoSat{
 		REP(i,0,n) if(comp[2*i] == comp[2*i+1]) return false;
 		return true;
 	}
-
 };
