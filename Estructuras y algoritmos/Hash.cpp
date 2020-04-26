@@ -40,6 +40,20 @@ struct HASH{
 unordered_set<ii,HASH> x;
 unordered_map<ii,int,HASH> y;
 
+// Another way to hash structs
+// Hashes is an struct with attributes a,b,c each with an attribute value
+namespace std{
+  template<>
+  struct hash<Hashes>{
+    size_t operator()(Hashes const &k)const{
+      return k.a.value^k.b.value^k.c.value;
+    }
+  };
+}
+// Then declare unordered_maps as unordered_map<Hashes,[type]> h;
+
+
+
 // Gracias el vasito
 struct Hash {
 	int P=1777771,MOD[2],PI[2];
