@@ -36,12 +36,36 @@ struct HASH{
     return ((long long)x.first)^(((long long)x.second)<<32);
   }
 };
-
 unordered_set<ii,HASH> x;
 unordered_map<ii,int,HASH> y;
 
 // Another way to hash structs
-// Hashes is an struct with attributes a,b,c each with an attribute value
+// For example : struct Hashes
+
+struct Hashes{
+	Hash<984569845299008451ll,79461232151ll> a;
+	Hash<999990089658418456ll,46165135511ll> b;
+	Hash<995115784520008208ll,38515628513ll> c;
+	void add(ll const x){
+		a.add(x);
+		b.add(x);
+		c.add(x);
+	}
+	bool operator == (Hashes const &other) const{
+		return a == other.a && b == other.b && c == other.c;
+	}
+	Hashes operator+(Hashes const &other)const{
+		return {a+other.a,b+other.b,c+other.c};
+	}
+	Hashes operator - (Hashes const &other) const{
+		return { a - other.a, b - other.b, c - other.c };
+	}
+	Hashes operator * (ll const f) const{
+		return { a*f, b*f, c*f };
+	}
+};
+
+// Can be hashes like this
 namespace std{
   template<>
   struct hash<Hashes>{
@@ -50,10 +74,10 @@ namespace std{
     }
   };
 }
-// Then declare unordered_maps as unordered_map<Hashes,[type]> h;
+// Then declare unordered_maps as 
+unordered_map<Hashes,[type]> h;
 
-
-
+// Hash strings
 // Gracias el vasito
 struct Hash {
 	int P=1777771,MOD[2],PI[2];
