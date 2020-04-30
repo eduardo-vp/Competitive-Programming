@@ -1,6 +1,6 @@
 
 struct HLD{
-  STree st;
+  	STree st;
 	int gid,p[N],dep[N],tsz[N],id[N],rt[N];
 	int mksz(int u, int pai = -1, int d = 0){
 		p[u] = pai; dep[u] = d; tsz[u] = 1;
@@ -42,6 +42,6 @@ struct HLD{
 		gid = 0;
 		mksz(1);
 		dfs(1);
-    st.init(n);
+    		st.init(n);
 	}
 };
