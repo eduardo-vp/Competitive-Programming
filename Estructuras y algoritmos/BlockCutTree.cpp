@@ -53,36 +53,22 @@ void BuildBlockCut(){
 	for(vector<ii> &vec : bcc){
 		int aux = cnt++;
 		if(vec.size() == 1){
-			
 			(*lower_bound(bridges.begin(),bridges.end(),make_pair(edge(vec[0].first,vec[0].second),-1))).second = aux;
 		}
 		set<int> s;
 		for(ii &p : vec){
 			int a = p.first, b = p.second;
-			if(art[a]){
-				if(idBct[a] == -1){
-					s.insert(a);
-					idBct[a] = cnt++;
-					bct[aux].push_back(idBct[a]);
-					bct[idBct[a]].push_back(aux);
-				}else if(!s.count(a)){
-					s.insert(a);
-					bct[aux].push_back(idBct[a]);
-					bct[idBct[a]].push_back(aux);
-				}
-			}else idBct[a] = aux;
-			if(art[b]){
-				if(idBct[b] == -1){
-					s.insert(b);
-					idBct[b] = cnt++;
-					bct[aux].push_back(idBct[b]);
-					bct[idBct[b]].push_back(aux);
-				}else if(!s.count(b)){
-					s.insert(b);
-					bct[aux].push_back(idBct[b]);
-					bct[idBct[b]].push_back(aux);
-				}
-			}else idBct[b] = aux;
+			for(int t = 0; t < 2; ++t){ // run for a and b
+				if(art[a]){
+					if(!s.count(a)){
+						if(idBct[a] == -1) idBct[a] = cnt++;
+						s.insert(a);
+						bct[aux].push_back(idBct[a]);
+						bct[idBct[a]].push_back(aux);
+					}
+				}else idBct[a] = aux;
+				swap(a,b);
+			}
 		}
 	}
 }
