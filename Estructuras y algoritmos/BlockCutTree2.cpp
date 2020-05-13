@@ -7,12 +7,10 @@ struct graph{
 		adj[u].push_back(v);
 		adj[v].push_back(u);
 	}
-
 	int add_node(){
 		adj.push_back({});
 		return n++;
 	}
-
 	vector<int>& operator[](int u) { return adj[u]; }
 };
 
