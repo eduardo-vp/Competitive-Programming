@@ -1,1 +1,0 @@
-- https://cp-algorithms.com/string/string-hashing.html#toc-tgt-3
