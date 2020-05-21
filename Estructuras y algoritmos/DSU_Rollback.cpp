@@ -1,6 +1,6 @@
 struct DSUrb {
-	vi e;
-	void init(int n) { e = vi(n,-1); }
+	vector<int> e;
+	void init(int n) { e = vector<int>(n,-1); }
 	int get(int x) { return e[x] < 0 ? x : get(e[x]); } 
 	bool sameSet(int a, int b) { return get(a) == get(b); }
 	int size(int x) { return -e[get(x)]; }
