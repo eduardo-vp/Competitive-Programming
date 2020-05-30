@@ -1,4 +1,12 @@
 
+// Usage:
+// Node* x[N];
+// for(int i = 0; i < n; ++i)
+//   x[i] = new Node(0);
+// connect a,b -> link(x[a], x[b])
+// cut a,b -> cut(x[a], x[b])
+// check connectivity -> connected(x[a], x[b])
+
 struct Node{
   bool rev;
   Node *l, *r, *p;
