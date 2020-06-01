@@ -1,5 +1,5 @@
-// Works for queries in non-decreasing order and lines with non-decreasing slopes
 
+// Works for queries in non-decreasing order and lines with non-decreasing slopes
 struct Line{
 	ll m,b;
 	ll eval(ll x){ return m*x + b; }
@@ -19,11 +19,9 @@ struct LineContainer{
 				now.b = max(now.b, dq.back().b);
 				dq.pop_back();
 			}
-		}else{
-			assert(now.m > dq.back().m);
-			while(sz(dq) >= 2 && now.intersectX(dq.back()) <= dq.back().intersectX(dq[sz(dq)-2]))
-				dq.pop_back();
-		}
+		}else assert(now.m > dq.back().m);
+		while(sz(dq) >= 2 && now.intersectX(dq.back()) <= dq.back().intersectX(dq[sz(dq)-2]))
+			dq.pop_back();
 		dq.push_back(now);
 	}
 	ll query(ll x) {
