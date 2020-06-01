@@ -17,7 +17,7 @@ struct DSUrb {
 		return 1;
 	}
 	void rollback() {
-		auto a = mod.bk; mod.pop_back();
+		auto a = mod.back(); mod.pop_back();
 		if (a[0] != MOD) e[a[0]] = a[2], e[a[1]] = a[3];
 	}
 };
