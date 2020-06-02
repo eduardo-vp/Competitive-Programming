@@ -4,7 +4,7 @@ const int NEUT = 0;
 struct STree{ // persistent segment tree for sum over integers
 	int n,rt;
 	vector<int> st,left,right;
-	STree(int n) : st(1,NEUT), n(n), rt(0){}
+	STree(int n) : st(1,NEUT), left(1,0), right(1,0), n(n), rt(0){}
 	int comb(int a, int b){
 		return a + b;
 	}
