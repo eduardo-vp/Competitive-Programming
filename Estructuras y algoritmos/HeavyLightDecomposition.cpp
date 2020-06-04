@@ -14,7 +14,7 @@ struct HLD{
 		rt[u] = root;
 		int w = 0, wsz = -1;
 		for(int v : adj[u]) if(v != p[u] && tsz[v] > wsz){
-		  w = v;
+			w = v;
 			wsz = tsz[v];
 		}
 		if(w) dfs(w,root);
