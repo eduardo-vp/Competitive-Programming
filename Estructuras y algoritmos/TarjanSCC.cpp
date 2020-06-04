@@ -14,8 +14,7 @@ int Tarjan(int n){
 			if(vist[v]) low[u] = min(low[u],low[v]);
 		}
 		if(num[u] == low[u]){
-			int v;
-			do{
+			int v; do{
 				v = stk.back(); stk.pop_back(); vist[v] = 0;
 				nodes[scc].push_back(v);
 			}while(u != v);
