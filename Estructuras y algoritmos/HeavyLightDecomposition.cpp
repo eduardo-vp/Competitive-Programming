@@ -2,14 +2,14 @@
 struct HLD{
   	STree st;
 	int gid,p[N],dep[N],tsz[N],id[N],rt[N];
-	int mksz(int u, int pai = -1, int d = 0){
+	int dfs_sz(int u, int pai = -1, int d = 0){
 		p[u] = pai; dep[u] = d; tsz[u] = 1;
 		for(int v : adj[u]) if(v != pai){
-			tsz[u] += mksz(v,u,d+1);
+			tsz[u] += dfs_sz(v,u,d+1);
 		}
 		return tsz[u];
 	}
-	void dfs(int u, int root = 1){
+	void dfs_hld(int u, int root = 1){
 		id[u] = gid++;
 		rt[u] = root;
 		int w = 0, wsz = -1;
@@ -17,9 +17,9 @@ struct HLD{
 			w = v;
 			wsz = tsz[v];
 		}
-		if(w) dfs(w,root);
+		if(w) dfs_hld(w,root);
 		for(int v : adj[u]) if(v != p[u] && v != w){
-			dfs(v,v);
+			dfs_hld(v,v);
 		}
 	}
 	void modify(int u, int val){
@@ -40,8 +40,8 @@ struct HLD{
 	}
 	void init(int n){
 		gid = 0;
-		mksz(1);
-		dfs(1);
+		dfs_sz(1);
+		dfs_hld(1);
     		st.init(n);
 	}
 };
