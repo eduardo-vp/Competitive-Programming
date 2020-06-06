@@ -1,4 +1,4 @@
-# Holis
+# Useful links
 
 - http://codeforces.com/blog/entry/53341
 - https://www.topcoder.com/community/competitive-programming/tutorials/range-minimum-query-and-lowest-common-ancestor/
