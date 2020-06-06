@@ -1,5 +1,5 @@
 
-struct HLD{
+struct HeavyLight{
   	STree st;
 	int gid,p[N],dep[N],tsz[N],id[N],rt[N];
 	int dfs_sz(int u, int pai = -1, int d = 0){
