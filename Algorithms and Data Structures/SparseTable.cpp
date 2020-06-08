@@ -6,7 +6,7 @@ struct SparseTable{
 	void build(vector<int> &vec){
 		n = sz(vec);
 		flog[1] = 0;
-		REP(i,0,N) flog[i] = flog[i>>1] + 1;
+		REP(i,2,N) flog[i] = flog[i>>1] + 1;
 		for(int i = 0; i < n; ++i)
 			rmq[i][0] = vec[i];
 		for(int lg = 1, pw = 2; lg < LGMAX; ++lg, pw *= 2){
