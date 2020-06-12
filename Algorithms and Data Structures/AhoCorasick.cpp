@@ -7,9 +7,8 @@ using namespace std;
 /* Considerar el tamanho del alfabeto */
 /* Implementacion para letras minusculas, mayusculas y numeros entre [0,9] */
 
-#define N 1000100
-#define MOD 1000003
- 
+const int N = 1e5+20;
+
 inline char f(char ch){
    if(ch >= 'a' and ch <= 'z') return ch - 'a';
    if(ch >= 'A' and ch <= 'Z') return ch - 'A' + 26;
@@ -63,12 +62,12 @@ struct AhoCorasick{
       return gt[v][c];
    }
  
-   int get_superlink(int u){
+   int get_slink(int u){
       if(slink[u] == -1){
          int lk = get_link(u);
          if(lk == 0) slink[u] = 0;
          else if(leaf[lk]) slink[u] = lk;
-         else slink[u] = get_superlink(lk);
+         else slink[u] = get_slink(lk);
       }
       return slink[u];
    }
