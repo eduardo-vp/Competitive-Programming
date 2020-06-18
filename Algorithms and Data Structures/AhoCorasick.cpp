@@ -42,7 +42,7 @@ struct AhoCorasick{
          u = t[u][c];
          pch[u] = ch;
       }
-      leaf[u] = 1;
+      leaf[u] = id;
    }
  
    int get_link(int v){
