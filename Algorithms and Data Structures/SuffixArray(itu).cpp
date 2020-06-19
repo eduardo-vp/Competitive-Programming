@@ -1,20 +1,3 @@
-// dile a la jardinera que traigo flores
-// corner cases // int vs ll // cin vs scanf
-#include <bits/stdc++.h>
-#define ff first
-#define ss second
-#define mp make_pair
-#define pb push_back
-#define sz(x) int(x.size())
-#define fill(x,v) memset(x,v,sizeof(x))
-#define FER(i,a,b) for(int i = int(a); i < int(b); ++i)
-#define trace(x) cout << #x << " = " << x << endl
-#define fastio ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0)
-#define MAXN 1000010
-#define MAXLG 25
-using namespace std;
-typedef long long ll;
-typedef pair<int,int> ii;
 
 // r is the list of sorted suffixes
 // p is the position of i in the sorted list
@@ -28,10 +11,10 @@ void fit_index(int b, int e){
 	int lastpk, pk, d;
 	lastpk = p[r[b]+t];
 	d = b;
-	FER(i,b,e){
+	REP(i,b,e){
 		if(((pk = p[r[i]+t]) != lastpk) and (b > lastpk or pk >= e)){
-				lastpk = pk;
-				d = i;
+			lastpk = pk;
+			d = i;
 		}
 		p[r[i]] = d;
 	}
@@ -39,9 +22,9 @@ void fit_index(int b, int e){
 
 void suff_arr(){
 	int bc[256];
-	FER(i,0,256) bc[i] = 0;
-	FER(i,0,n) bc[int(s[i])]++;
-	FER(i,1,256) bc[i] += bc[i-1];
+	REP(i,0,256) bc[i] = 0;
+	REP(i,0,n) bc[int(s[i])]++;
+	REP(i,1,256) bc[i] += bc[i-1];
 	for(int i = n-1; i >= 0; --i) r[--bc[int(s[i])]] = i;
 	for(int i = n-1; i >= 0; --i) p[i] = bc[int(s[i])];
 	for(t = 1; t < n; t <<= 1){
@@ -59,7 +42,7 @@ void suff_arr(){
 
 void init_lcp(){
 	int tam = 0, j;
-	FER(i,0,n-1){
+	REP(i,0,n-1){
 		j = r[p[i]-1];
 		while(s[i+tam] == s[j+tam]) ++tam;
 		h[p[i]-1] = tam;
@@ -69,12 +52,12 @@ void init_lcp(){
 
 void make_lcp(){
 	init_lcp();
-	FER(i,0,n-1) rmq[0][i] = h[i];
+	REP(i,0,n-1) rmq[0][i] = h[i];
 	int lg = 0, pw = 1;
 	do{
-		FER(i,pw,pw*2) flog2[i] = lg;
+		REP(i,pw,pw*2) flog2[i] = lg;
 		lg++, pw *= 2;
-		FER(i,0,n-1){
+		REP(i,0,n-1){
 			if(i+pw/2 < n-1) rmq[lg][i] = min(rmq[lg-1][i],rmq[lg-1][i+pw/2]);
 			else rmq[lg][i] = rmq[lg-1][i];
 		}
