@@ -62,7 +62,7 @@ struct SuffixArray{
 		init_lcp();
 		flog2[1] = 0;
 		REP(i,0,n-1) rmq[0][i] = h[i];
-		REP(i,2,n+1) flog[i] = flog[i<<1] + 1;
+		REP(i,2,n+1) flog2[i] = flog2[i<<1] + 1;
 		int lg = 0, pw = 1;
 		do{
 			lg++, pw *= 2;
