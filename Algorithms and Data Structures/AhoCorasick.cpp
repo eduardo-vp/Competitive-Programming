@@ -28,7 +28,7 @@ struct AhoCorasick{
       fill(gt,-1);
       fill(link,-1);
       fill(slink,-1);
-      fill(leaf,0);
+      fill(leaf,-1);
    }
  
    void add_string(string &s, int id){
@@ -66,7 +66,7 @@ struct AhoCorasick{
       if(slink[u] == -1){
          int lk = get_link(u);
          if(lk == 0) slink[u] = 0;
-         else if(leaf[lk]) slink[u] = lk;
+         else if(leaf[lk] >= 0) slink[u] = lk;
          else slink[u] = get_slink(lk);
       }
       return slink[u];
