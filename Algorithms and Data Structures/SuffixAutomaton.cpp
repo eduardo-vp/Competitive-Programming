@@ -32,7 +32,9 @@ struct SuffixAutomaton{
 				int clone = cnt++;
 				st[clone].len = st[p].len + 1;
 				st[clone].link = st[q].link;
-				memcpy(&st[clone].next, &st[q].next, sizeof(st[q].next));
+				for(int i = 0; i < ALPH; ++i){
+					st[clone].next[i] = st[q].next[i];
+				}
 				while(p != -1 && st[p].next[c] == q){
 					st[p].next[c] = clone;
 					p = st[p].link;
