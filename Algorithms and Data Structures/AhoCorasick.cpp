@@ -31,7 +31,7 @@ struct AhoCorasick{
       fill(leaf,-1);
    }
  
-   void add_string(string &s, int id){
+   int add_string(string &s, int id){
       int u = 0;
       for(char ch : s){
          int c = f(ch);
@@ -43,6 +43,7 @@ struct AhoCorasick{
          pch[u] = ch;
       }
       leaf[u] = id;
+      return u;
    }
  
    int get_link(int v){
