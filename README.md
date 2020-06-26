@@ -13,3 +13,4 @@
 - https://www.youtube.com/channel/UCBr_Fu6q9iHYQCh13jmpbrg
 - http://acm.math.spbu.ru/~sk1/mm/lections/mipt2016-sqrt/mipt-2016-burunduk1-sqrt.en.pdf
 - https://pure.tue.nl/ws/files/4373475/597494.pdf
+- https://github.com/Errichto/youtube/wiki/Learning-resources
