@@ -12,18 +12,18 @@ void update(int l, int r, int x){
 		for(int i = l; i < r; ++i){
 			// update position
 		}
-	}else{
-		while(l % SQ){
-			// update position
-			l++;
-		}
-		while(r % SQ){
-			r--;
-      // update position
-		}
-		for(int i = id[l]; i < id[r]; ++i){
-			// update block
-		}
+		return;
+	}
+	while(l % SQ){
+		// update position
+		l++;
+	}
+	while(r % SQ){
+		r--;
+      		// update position
+	}
+	for(int i = id[l]; i < id[r]; ++i){
+		// update block
 	}
 }
 
@@ -34,18 +34,18 @@ int query(int l, int r){
 		for(int i = l; i < r; ++i){
 			// query position
 		}
-	}else{
-		while(l % SQ){
-			// query position
-			l++;
-		}
-		while(r % SQ){
-			r--;
-			// query position
-		}
-		for(int i = id[l]; i < id[r]; ++i){
-			// query block
-		}
+		return ans;
+	}
+	while(l % SQ){
+		// query position
+		l++;
+	}
+	while(r % SQ){
+		r--;
+		// query position
+	}
+	for(int i = id[l]; i < id[r]; ++i){
+		// query block
 	}
 	return ans;
 }
