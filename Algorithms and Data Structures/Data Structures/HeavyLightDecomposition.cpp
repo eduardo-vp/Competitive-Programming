@@ -1,4 +1,5 @@
 const int N = 1e5+20;
+vector<int> adj[N]; // graph
 
 struct HeavyLight{
 	STree st; // supports build, query [l,r) and update in position
@@ -15,7 +16,7 @@ struct HeavyLight{
 	void dfs_hld(int u){
 		id[u] = gid++;
 		for(int v : adj[u]) if(v != p[u]){
-			rt[v] = (v == g[u][0] ? rt[u] : v);
+			rt[v] = (v == adj[u][0] ? rt[u] : v);
 			dfs_hld(v);
 		}
 	}
