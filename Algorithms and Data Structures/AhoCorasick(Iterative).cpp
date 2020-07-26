@@ -40,9 +40,9 @@ struct AhoCorasick{
 		q.push(0);
 		while(sz(q)){
 			int u = q.front(); q.pop();
-			link[u] = (p[u] == 0) ? 0 : go[link[p[u]]][f(pch[u])];
-			if(link[u] == 0) slink[u] = 0;
-			else slink[u] = (leaf[link[u]] >= 0) ? link[u] : slink[link[u]];
+			int lk = link[u] = (p[u] == 0) ? 0 : go[link[p[u]]][f(pch[u])];
+			if(lk == 0) slink[u] = 0;
+			else slink[u] = (leaf[lk] >= 0) ? lk : slink[lk];
 			for(char ch : alphabet){ // replace accordingly
 				int c = f(ch);
 				if(t[u][c] > 0){
