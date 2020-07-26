@@ -9,7 +9,7 @@ using namespace std;
 
 const int N = 1e5+20;
 
-inline char f(char ch){
+inline int f(char ch){
    if(ch >= 'a' and ch <= 'z') return ch - 'a';
    if(ch >= 'A' and ch <= 'Z') return ch - 'A' + 26;
    return ch - '0' + 52;
