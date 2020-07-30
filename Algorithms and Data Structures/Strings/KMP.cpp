@@ -16,7 +16,7 @@ vector<int> kmp(string &s){
 void process(string &s){
 	int n = sz(s);
 	vector<int> vec = kmp(s);
-	fill(go,0);
+	memset(go,0,sizeof(go));
 	for(int i = 0; i < n; ++i) go[i][s[i]] = i+1;
 	for(int i = 1; i <= n; ++i)
 		for(char j = 'a'; j <= 'z'; ++j){
