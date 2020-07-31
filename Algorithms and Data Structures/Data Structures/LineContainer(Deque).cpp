@@ -1,4 +1,4 @@
-
+// Line Container (queries for maximum)
 // Works for queries in non-decreasing order and lines with non-decreasing slopes
 struct Line{
 	ll m,b;
