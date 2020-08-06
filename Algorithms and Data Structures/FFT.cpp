@@ -1,3 +1,6 @@
+
+// Gracias El vasito
+
 struct CD {  // or typedef complex<double> CD; (but 4x slower)
 	double r,i;
 	CD(double r = 0, double i = 0) : r(r), i(i){}
