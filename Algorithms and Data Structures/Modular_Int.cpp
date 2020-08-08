@@ -1,3 +1,4 @@
+// based on : https://codeforces.com/contest/1383/submission/87919031
 
 template<typename T, T mod>
 struct Tint{
