@@ -1,7 +1,7 @@
 
 int go[N][300];
  
-vector<int> kmp(string &s){
+vector<int> prefix_function(string &s){
 	int n = sz(s);
 	vector<int> p(n);
 	p[0] = 0;
@@ -15,7 +15,7 @@ vector<int> kmp(string &s){
  
 void process(string &s){
 	int n = sz(s);
-	vector<int> vec = kmp(s);
+	vector<int> vec = prefix_function(s);
 	memset(go,0,sizeof(go));
 	for(int i = 0; i < n; ++i) go[i][s[i]] = i+1;
 	for(int i = 1; i <= n; ++i)
@@ -27,7 +27,7 @@ void process(string &s){
 
 void search(string &pat, string &text){
 	int cnt = 0;
-	vector<int> vec = kmp(pat);
+	vector<int> vec = prefix_function(pat);
 	for(char c : text){
 		while(cnt and c != pat[cnt]) cnt = vec[cnt-1];
 		if(c == pat[cnt]) cnt++;
