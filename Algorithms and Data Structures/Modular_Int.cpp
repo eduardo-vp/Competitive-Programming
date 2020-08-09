@@ -37,3 +37,9 @@ struct Tint{
 // usage
 const ll MOD = 1e9+7;
 using Mint = Tint<int,MOD>;
+
+void test(){
+	Mint x;
+	x += 4;
+	cout << x.val << endl;
+}
