@@ -13,7 +13,7 @@ vector<int> prefix_function(string &s){
 	return p;
 }
  
-void process(string &s){
+void build_automaton(string &s){
 	int n = sz(s);
 	vector<int> vec = prefix_function(s);
 	memset(go,0,sizeof(go));
