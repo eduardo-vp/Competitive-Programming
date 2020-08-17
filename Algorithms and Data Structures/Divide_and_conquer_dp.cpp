@@ -1,6 +1,5 @@
 
 // general case
-
 void go(int id, int l, int r, int optl, int optr){
 	if(l >= r) return;
 	int mid = (l + r) >> 1, opt = -1;
