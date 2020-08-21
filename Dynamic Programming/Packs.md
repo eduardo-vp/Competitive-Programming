@@ -1,4 +1,0 @@
-- https://codeforces.com/blog/entry/45223?fbclid=IwAR0ifHBg1M_U2lzv137lNUlkQPYoBhhAgON1pED4XxWL1sTFM6FsRmihkrQ
-- https://codeforces.com/blog/entry/47764?fbclid=IwAR0MQGO5m4LZFD8m2ahmcnLislIZeY132vStS7vmGpVUPORfgWhdjtQwrLA
-- https://codeforces.com/blog/entry/20935?fbclid=IwAR02i1gWSgf-Xdw-CiIJ08olLuDpmHjiXn95155scu_BdOUvpCTaNN0_8tQ
-- https://codeforces.com/blog/entry/53960?fbclid=IwAR0ifHBg1M_U2lzv137lNUlkQPYoBhhAgON1pED4XxWL1sTFM6FsRmihkrQ
