@@ -5,7 +5,7 @@
 struct Chordal{
 	vector<int> adj[N], a[N];
 	int qu[N], pos[N], l[N], r[N], c[N];
-	bool ac(int n) {
+	bool is_chordal(int n) {
 		iota(qu, qu+n, 0);
 		iota(pos, pos+n, 0);
 		memset(l, 0, 4*n);
