@@ -1,5 +1,5 @@
 
-// Call ac(n) to check if it's a chordal graph
+// Call is_chordal(n) to check if it's a chordal graph
 // Array pos[N] has the Perfect elimination order if true
 
 struct Chordal{
