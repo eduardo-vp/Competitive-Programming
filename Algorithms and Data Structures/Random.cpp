@@ -29,5 +29,9 @@ int main(){
 	while( (clock()-cl_start)<=2.7*CLOCKS_PER_SEC ){	
 		// do sth 
 	}
+	
+	// gen random integer in [0,100]
+	int x = uniform_int_distribution<int>(0, 100)(rng);
+	
 	return 0;
 }
