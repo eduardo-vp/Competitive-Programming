@@ -5,7 +5,7 @@ typedef ll tf;
 typedef ll tc;
 const tf INFFLOW=1e9;
 const tc INFCOST=1e9;
-struct MinCostMaxFlow{
+struct MCF{
 	int n;
 	vector<tc> prio, pot; 
 	vector<tf> curflow; 
