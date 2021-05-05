@@ -4,9 +4,9 @@ vector<int> adj[N];
 
 int tarjan(int n){
 	int gid = 1, scc = 0;
-	vector<int> num(n+1,0), low(n+1,0), vist(n+1,0), stk;
+	vector<int> num(n, 0), low(n, 0), vist(n, 0), stk;
 	function<void(int)> dfs = [&](int u){
-		num[u] = low[u] = ++gid;
+		num[u] = low[u] = gid++;
 		stk.push_back(u);
 		vist[u] = 1;
 		for(int v : adj[u]){
@@ -21,7 +21,7 @@ int tarjan(int n){
 			scc++;
 		}
 	};
-	for(int i = 1; i <= n; ++i){
+	for(int i = 0; i < n; ++i){
 		if(!num[i]) dfs(i);
 	}
 	return scc;
