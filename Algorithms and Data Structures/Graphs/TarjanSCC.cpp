@@ -3,7 +3,7 @@ vector<int> scc[N];
 vector<int> adj[N];
 
 int tarjan(int n){
-	int gid = 1, scc_num = 0;
+	int gid = 1, num_scc = 0;
 	vector<int> num(n, 0), low(n, 0), vist(n, 0), stk;
 	function<void(int)> dfs = [&](int u){
 		num[u] = low[u] = gid++;
@@ -16,13 +16,13 @@ int tarjan(int n){
 		if(num[u] == low[u]){
 			int v; do{
 				v = stk.back(); stk.pop_back(); vist[v] = 0;
-				scc[scc_num].push_back(v);
+				scc[num_scc].push_back(v);
 			}while(u != v);
-			scc_num++;
+			num_scc++;
 		}
 	};
 	for(int i = 0; i < n; ++i){
 		if(!num[i]) dfs(i);
 	}
-	return scc_num;
+	return num_scc;
 }
