@@ -3,7 +3,7 @@ vector<int> nodes[N];
 vector<int> adj[N];
 
 int tarjan(int n){
-	int gid = 0, scc = 0;
+	int gid = 1, scc = 0;
 	vector<int> num(n+1,0), low(n+1,0), vist(n+1,0), stk;
 	function<void(int)> dfs = [&](int u){
 		num[u] = low[u] = ++gid;
