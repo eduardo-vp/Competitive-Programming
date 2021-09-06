@@ -23,59 +23,59 @@ typedef vector<int> vi;
 typedef vector<ii> vii;
 
 struct Trie{
-	int cont;
-	int ans;
-	int used[N];
-	int cant[N];
-	map<char,int> to[N];
-	
-	Trie(){ ans = 0; cont = 1; fill(cant,0); fill(used,0); }
+  int cont;
+  int ans;
+  int used[N];
+  int cant[N];
+  map<char,int> to[N];
+  
+  Trie(){ ans = 0; cont = 1; fill(cant,0); fill(used,0); }
 
-	void insert(string &cad){
-		int cur = 0;
-		for(char c : cad){
-			if(!to[cur].count(c))
-				to[cur][c] = cont++;
-			cur = to[cur][c];
-			cant[cur]++;
-		}
-	}
-	
-	void process(string &cad){
-		int cur = 0;
-		for(char c : cad){
-			if(!to[cur].count(c)) break;
-			cur = to[cur][c];
-			if(used[cur] < cant[cur]){
-				used[cur]++;
-				ans++;
-			}
-		}
-	}
+  void insert(string &cad){
+    int cur = 0;
+    for(char c : cad){
+      if(!to[cur].count(c))
+        to[cur][c] = cont++;
+      cur = to[cur][c];
+      cant[cur]++;
+    }
+  }
+  
+  void process(string &cad){
+    int cur = 0;
+    for(char c : cad){
+      if(!to[cur].count(c)) break;
+      cur = to[cur][c];
+      if(used[cur] < cant[cur]){
+        used[cur]++;
+        ans++;
+      }
+    }
+  }
 
-	int solve(){
-		return ans;
-	}
+  int solve(){
+    return ans;
+  }
 };
 
 int main(){
 
-	fastio;	
-	int n = 0;
-	while(cin >> n){
-		if(n == -1) break;
-		string cad;
-		Trie t;
-		FER(i,0,n){
-			cin >> cad;
-			t.insert(cad);
-		}
-		FER(i,0,n){
-			cin >> cad;
-			t.process(cad);
-		}
-		cout << t.solve() << endl;
-	}
+  fastio; 
+  int n = 0;
+  while(cin >> n){
+    if(n == -1) break;
+    string cad;
+    Trie t;
+    FER(i,0,n){
+      cin >> cad;
+      t.insert(cad);
+    }
+    FER(i,0,n){
+      cin >> cad;
+      t.process(cad);
+    }
+    cout << t.solve() << endl;
+  }
 
-	return 0;
+  return 0;
 }

@@ -49,26 +49,26 @@ set<pair<string,int> > s;
 
 int b[510];
 void KMPBuild(int m){
-	int i=0,j=-1;
-	b[0] = -1;
-	while(i<m){
-		while(j>=0 && val[j] != val[i]) j = b[j];
-		i++;j++;
-		b[i] = j;
-	}
+  int i=0,j=-1;
+  b[0] = -1;
+  while(i<m){
+    while(j>=0 && val[j] != val[i]) j = b[j];
+    i++;j++;
+    b[i] = j;
+  }
 }
 int ocur;
 void KMP(int k,int patleng,int m){
-	int i =0,j=0;
-	while(i<m){
-		while(j>=0 && rpta[i][k] != val[j]) j=b[j];
-		i++; j++;
-		if(j==patleng){
-			//ocurrencia
-			ocur++;
-			j = b[j];
-		}
-	}
+  int i =0,j=0;
+  while(i<m){
+    while(j>=0 && rpta[i][k] != val[j]) j=b[j];
+    i++; j++;
+    if(j==patleng){
+      //ocurrencia
+      ocur++;
+      j = b[j];
+    }
+  }
 }
 
 void init(){
@@ -120,68 +120,68 @@ void search(int row){
         while( nodo != 0 && !sig[ nodo ][ c ] ) nodo = fail[ nodo ] ;
         nodo = sig[ nodo ][ c ] ;
         f( j , 0 , final[ nodo ].size() ){
-        	rpta[row][i] = final[nodo][j];
-        	enc[ final[ nodo ][ j ] ] = true ;
+          rpta[row][i] = final[nodo][j];
+          enc[ final[ nodo ][ j ] ] = true ;
         }
     }
 }
  
 int main(){
-	int t;
-	scanf("%d",&t);
-	while(t--){
-	 	int h,w,r,c;
-	 	scanf("%d %d",&r,&c);
-	 	for(int i=0;i<r;i++) scanf("%s",board[i]);
-	 	scanf("%d %d",&h,&w);
-	 	int b=1;
-	 	while(b--){
-	 		s.clear();
-	 		for(int i=0;i<r;i++)
-	 			for(int j=0;j<c;j++) rpta[i][j] = 0;
-		    for(int i=0;i<h;i++) scanf("%s",pattern[i]);
-		    
-		    //Los strings iguales se obvian
-		    for(int i=0;i<h;i++) s.insert(pair<string,int>(pattern[i],i));
-		    int aux = 1;
-		    set<pair<string,int> >::iterator it = s.begin();
-		    
-		    int j;
-			for(j=0;j<10000;j++){
-				for(int i=0;i<260;i++) sig[j][i] = 0;
-			 	final[j].clear();
-			 	fail[j]=0;
-			}
-			for(int i=0;i<260;i++) sig[j][i] = 0;
-			fail[j]=0;
-			final[j].clear();
-			
-		    init();
-		    while(it!=s.end()){
-		    	string auxx = it->first;
-		    	add(auxx,aux);
-		    	val[it->second] = aux;
-		    	it++;
-		    	while(it!=s.end() && it->first==auxx){
-		    		val[it->second] = aux;
-		    		it++;
-		    	}
-		    	aux++;
-		    }
-		    build() ;
-		    KMPBuild(h);
-		    
-		    
-		    for(int k=0;k<r;k++){
-		    	strcpy(T,board[k]);
-			    search(k) ;
-		    }
-		    ocur=0;
-		    for(int k=0;k<c;k++){
-		    	KMP(k,h,r);
-		    }
-		    cout<<ocur<<endl;
-	    }
-	}
+  int t;
+  scanf("%d",&t);
+  while(t--){
+    int h,w,r,c;
+    scanf("%d %d",&r,&c);
+    for(int i=0;i<r;i++) scanf("%s",board[i]);
+    scanf("%d %d",&h,&w);
+    int b=1;
+    while(b--){
+      s.clear();
+      for(int i=0;i<r;i++)
+        for(int j=0;j<c;j++) rpta[i][j] = 0;
+        for(int i=0;i<h;i++) scanf("%s",pattern[i]);
+        
+        //Los strings iguales se obvian
+        for(int i=0;i<h;i++) s.insert(pair<string,int>(pattern[i],i));
+        int aux = 1;
+        set<pair<string,int> >::iterator it = s.begin();
+        
+        int j;
+      for(j=0;j<10000;j++){
+        for(int i=0;i<260;i++) sig[j][i] = 0;
+        final[j].clear();
+        fail[j]=0;
+      }
+      for(int i=0;i<260;i++) sig[j][i] = 0;
+      fail[j]=0;
+      final[j].clear();
+      
+        init();
+        while(it!=s.end()){
+          string auxx = it->first;
+          add(auxx,aux);
+          val[it->second] = aux;
+          it++;
+          while(it!=s.end() && it->first==auxx){
+            val[it->second] = aux;
+            it++;
+          }
+          aux++;
+        }
+        build() ;
+        KMPBuild(h);
+        
+        
+        for(int k=0;k<r;k++){
+          strcpy(T,board[k]);
+          search(k) ;
+        }
+        ocur=0;
+        for(int k=0;k<c;k++){
+          KMP(k,h,r);
+        }
+        cout<<ocur<<endl;
+      }
+  }
     return 0 ;
 }

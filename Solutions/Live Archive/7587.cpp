@@ -20,28 +20,28 @@ int n;
 vector<ii> vec;
 
 bool cmp(const ii &x, const ii &y){
-	bool goodA = x.ss >= x.ff;
-	bool goodB = y.ss >= y.ff;
-	if(goodA and !goodB) return true;
-	if(goodB and !goodA) return false;
-	if(goodA and goodB) return x.ff < y.ff;
-	return x.ss > y.ss;
+  bool goodA = x.ss >= x.ff;
+  bool goodB = y.ss >= y.ff;
+  if(goodA and !goodB) return true;
+  if(goodB and !goodA) return false;
+  if(goodA and goodB) return x.ff < y.ff;
+  return x.ss > y.ss;
 }
 
 int main(){
  
-	while(scanf("%d",&n) == 1){
-		vec.resize(n);
-		FER(i,0,n) scanf("%d %d",&vec[i].ff,&vec[i].ss);
-		sort(vec.begin(),vec.end(),cmp);
-		ll cur = 0,ans = 1e18;
-		for(ii &par : vec){
-			cur -= par.ff;
-			ans = min(ans,cur);
-			cur += par.ss;
-		}
-		printf("%lld\n",-ans);
-	}
+  while(scanf("%d",&n) == 1){
+    vec.resize(n);
+    FER(i,0,n) scanf("%d %d",&vec[i].ff,&vec[i].ss);
+    sort(vec.begin(),vec.end(),cmp);
+    ll cur = 0,ans = 1e18;
+    for(ii &par : vec){
+      cur -= par.ff;
+      ans = min(ans,cur);
+      cur += par.ss;
+    }
+    printf("%lld\n",-ans);
+  }
 
-	return 0;
+  return 0;
 }

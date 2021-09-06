@@ -41,56 +41,56 @@ int cont ;
 int n , q ;
 
 void init(){
-	cont = 1 ;
-	clr( trie , -1 ) ;
-	clr( final , 0 ) ;
-	clr( words , 0 ) ;
+  cont = 1 ;
+  clr( trie , -1 ) ;
+  clr( final , 0 ) ;
+  clr( words , 0 ) ;
 }
 
 void add( string s ){
-	int nodo = 0 ;
-	f( i , 0 , s.size() ){
-		int c = s[ i ] - 'a' ;
-		if( trie[ nodo ][ c ] < 0 ) trie[ nodo ][ c ] = cont++ ;
-		words[ nodo ]++ ;
-		nodo = trie[ nodo ][ c ] ;
-	}
-	final[ nodo ] = true ;
+  int nodo = 0 ;
+  f( i , 0 , s.size() ){
+    int c = s[ i ] - 'a' ;
+    if( trie[ nodo ][ c ] < 0 ) trie[ nodo ][ c ] = cont++ ;
+    words[ nodo ]++ ;
+    nodo = trie[ nodo ][ c ] ;
+  }
+  final[ nodo ] = true ;
 }
 
 int countWords( string s ){
-	int nodo = 0 ;
-	f( i , 0 , s.size() ){
-		int c = s[ i ] - 'a' ;
-		if( trie[ nodo ][ c ] < 0 ) return 0 ;
-		nodo = trie[ nodo ][ c ] ;
-	}
-	return words[ nodo ] ;
+  int nodo = 0 ;
+  f( i , 0 , s.size() ){
+    int c = s[ i ] - 'a' ;
+    if( trie[ nodo ][ c ] < 0 ) return 0 ;
+    nodo = trie[ nodo ][ c ] ;
+  }
+  return words[ nodo ] ;
 }
 
 bool exists( string s ){
-	int nodo = 0 ;
-	f( i , 0 , s.size() ){
-		int c = s[ i ] - 'a' ;
-		if( trie[ nodo ][ c ] < 0 ) return false ;
-		nodo = trie[ nodo ][ c ] ;
-	}
-	return final[ nodo ] ;
+  int nodo = 0 ;
+  f( i , 0 , s.size() ){
+    int c = s[ i ] - 'a' ;
+    if( trie[ nodo ][ c ] < 0 ) return false ;
+    nodo = trie[ nodo ][ c ] ;
+  }
+  return final[ nodo ] ;
 }
 
 int main(){
 
-	int type ;
-	char s[ TAM ] ;
-	while( scanf("%d%d" , &n , &q ) == 2 ){
-		init() ;
-		f( i , 0 , n ) scanf("%s" , s ) , add( s ) ;
-		f( i , 0 , q ){
-			scanf("%d%s" , &type , s ) ;
-			if( type ) printf("%d\n" , countWords( s ) ) ;
-			else printf("%s\n" , exists( s ) ? "YES" : "NO" ) ;
-		}
-	}
-	return 0 ;
+  int type ;
+  char s[ TAM ] ;
+  while( scanf("%d%d" , &n , &q ) == 2 ){
+    init() ;
+    f( i , 0 , n ) scanf("%s" , s ) , add( s ) ;
+    f( i , 0 , q ){
+      scanf("%d%s" , &type , s ) ;
+      if( type ) printf("%d\n" , countWords( s ) ) ;
+      else printf("%s\n" , exists( s ) ? "YES" : "NO" ) ;
+    }
+  }
+  return 0 ;
 }
 

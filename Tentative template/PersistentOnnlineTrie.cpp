@@ -41,9 +41,9 @@ map<ll, ll> mts;
 ll zz;
 
 inline ll OC(ll kst){
-	if(mts.count(kst)) return mts[kst];
-	mts[kst]=zz++;
-	return mts[kst];
+  if(mts.count(kst)) return mts[kst];
+  mts[kst]=zz++;
+  return mts[kst];
 }
 struct Trie{
     ll nod;
@@ -114,43 +114,43 @@ struct Trie{
     }
 
     inline ll check(ll id){
-    	if(m[id][0]!=0 && m[id][1]!=0) return 1;
-    	return 0;
+      if(m[id][0]!=0 && m[id][1]!=0) return 1;
+      return 0;
     }
 
     inline ii RemTrie(ll id, ll val, ll timerst){
-    	ll y=OC(val);
-    	ll rt=upd(y, -1, timerst), rx;
-    	ll cur=que(y, y+1, rt);
-    	ll rrt=id;
-    	if(!cur){
-    		rrt=AddTrie(id, 30, val);
-    		id=rrt;
-    		tnt.clear();
-    		IFR(i, 30, 0){
-    			ll r=(val>>i)&1;
-    			id=m[id][r];
-    			tnt.pb(id);
-    		}
-    		reverse(all(tnt));
-    		FER(i, 0, 31){
-    			ll r=(val>>i)&1, r1=tnt[i];
-    			if(check(r1) || i==30) {
-    				rx=(val>>(i-1))&1;
-    				m[r1][rx]=0;
-    				break;
-    			}
-    		}
-    	}
-    	return {rt, rrt};
+      ll y=OC(val);
+      ll rt=upd(y, -1, timerst), rx;
+      ll cur=que(y, y+1, rt);
+      ll rrt=id;
+      if(!cur){
+        rrt=AddTrie(id, 30, val);
+        id=rrt;
+        tnt.clear();
+        IFR(i, 30, 0){
+          ll r=(val>>i)&1;
+          id=m[id][r];
+          tnt.pb(id);
+        }
+        reverse(all(tnt));
+        FER(i, 0, 31){
+          ll r=(val>>i)&1, r1=tnt[i];
+          if(check(r1) || i==30) {
+            rx=(val>>(i-1))&1;
+            m[r1][rx]=0;
+            break;
+          }
+        }
+      }
+      return {rt, rrt};
     }
 
     inline ll QueryMax(ll id, ll val){
         ll ans=0;
         IFR(i,30,0){
-        	ll r=(val>>i)&1;
-        	if(m[id][r ^ 1]) id=m[id][r ^ 1], ans+=((r^1)<<i);
-        	else id=m[id][r], ans+=(r<<i);
+          ll r=(val>>i)&1;
+          if(m[id][r ^ 1]) id=m[id][r ^ 1], ans+=((r^1)<<i);
+          else id=m[id][r], ans+=(r<<i);
         }
         return ans ^ val;
     }
@@ -158,35 +158,35 @@ struct Trie{
 }st;
 
 int main(){
-	fastio;
-	ll q; cin>>q;
-	st.n=q, st.nodes=0, st.nod=1;
-	FER(i,0,st.n) st.ar[i]=0;
-	ll rst, rtr;
-	rst=st.build();
-	rtr=st.AddTrie(0, 30, 0);
-	char s;
-	ll a, x;
-	ii cur;
-	FER(i,0,q){
-		cin>>s;
-		if(s=='+'){
-			cin>>x;
-			rtr=st.AddTrie(rtr, 30, x);
-			a=OC(x);
-			rst=st.upd(a, 1, rst);	
-		}
-		else if(s=='-'){
-			cin>>x;
-			cur=st.RemTrie(rtr, x, rst);
-			rst=cur.ff;
-			rtr=cur.ss;
-		}
-		else{
-			cin>>x;
-			a=st.QueryMax(rtr, x);
-			cout<<a<<endl;
-		}
-	}
-	return 0;
+  fastio;
+  ll q; cin>>q;
+  st.n=q, st.nodes=0, st.nod=1;
+  FER(i,0,st.n) st.ar[i]=0;
+  ll rst, rtr;
+  rst=st.build();
+  rtr=st.AddTrie(0, 30, 0);
+  char s;
+  ll a, x;
+  ii cur;
+  FER(i,0,q){
+    cin>>s;
+    if(s=='+'){
+      cin>>x;
+      rtr=st.AddTrie(rtr, 30, x);
+      a=OC(x);
+      rst=st.upd(a, 1, rst);  
+    }
+    else if(s=='-'){
+      cin>>x;
+      cur=st.RemTrie(rtr, x, rst);
+      rst=cur.ff;
+      rtr=cur.ss;
+    }
+    else{
+      cin>>x;
+      a=st.QueryMax(rtr, x);
+      cout<<a<<endl;
+    }
+  }
+  return 0;
 }

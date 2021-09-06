@@ -54,24 +54,24 @@ int gcd(int m, int n){
     return n;
 }
 int main() {
-	 int auxi;
+   int auxi;
      int t;string cad;
      cin>>t;getchar();
      f(i,0,t){
-     	stringstream ss;
-     	getline(cin,cad);
-     	clr(arr,0);
-     	int maxi=-1;
-     	ss<<cad;
-     	int n=0;
-     	while(ss>>arr[n]) n++;
-     	f(i,0,n-1){
-     		f(j,i+1,n){
-     		 auxi=gcd(arr[i],arr[j]);
-     		 if(maxi<auxi) maxi=auxi;
-     		}
-     	}
-     	printf("%d\n",maxi);
+      stringstream ss;
+      getline(cin,cad);
+      clr(arr,0);
+      int maxi=-1;
+      ss<<cad;
+      int n=0;
+      while(ss>>arr[n]) n++;
+      f(i,0,n-1){
+        f(j,i+1,n){
+         auxi=gcd(arr[i],arr[j]);
+         if(maxi<auxi) maxi=auxi;
+        }
+      }
+      printf("%d\n",maxi);
      }
     return 0;
 }

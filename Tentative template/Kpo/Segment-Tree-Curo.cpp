@@ -25,15 +25,15 @@ T get( int l , int r ){ //[l,r)
     T ansl, ansr;
     ansl = ansr = OpId; //Initialize operation at Identity
     for( l += n, r += n ; l < r ; l >>= 1, r >>= 1 ){
-	    if(l&1) ansl = Op(ansl, t[l++]);
-	    if(r&1) ansr = Op(t[--r], ansr);
+      if(l&1) ansl = Op(ansl, t[l++]);
+      if(r&1) ansr = Op(t[--r], ansr);
     }
     return Op(ansl, ansr);
 }
 
 
 int main(){
-	// Read into t[n,2*n)
+  // Read into t[n,2*n)
     build();
     // Answer queries
 }

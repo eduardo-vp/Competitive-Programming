@@ -43,7 +43,7 @@ void Rabin_Karp(string source,string pattern, int q){
  int h=1;                       // d^(m-1) value
  // Calculo el valor de d^(m-1) --> Pre-procesamiento en O(n)
  f(i,0,m-1){
- 	h=(d*h)%q;
+  h=(d*h)%q;
  }
  // Multiply each character by its place value and obtain the hash value
  // Initial Hash values of current sliding text window and the pattern is being calculated
@@ -54,27 +54,27 @@ void Rabin_Karp(string source,string pattern, int q){
  
   f(i,0,n-m){
  
-	// Check if the current sliding window of text and pattern have same hash values
+  // Check if the current sliding window of text and pattern have same hash values
  
-	if(t==p){
-	// Check if all characters are same or it's a SPURIOUS HIT !
-	int index=0; 
-	f(j,0,m){
-		if(source[i+j]!=pattern[j]) {
-		break;
-		}
-		index++;
+  if(t==p){
+  // Check if all characters are same or it's a SPURIOUS HIT !
+  int index=0; 
+  f(j,0,m){
+    if(source[i+j]!=pattern[j]) {
+    break;
+    }
+    index++;
     }
     if(index==m) cout<<"Pattern matched at index "<<i<<endl;
-	}
-	// Now compute the next sliding window for the text using previous value..
-	if(i<n-m){
-	t = (d*(t - source[i]*h) + source[i+m])%q;
-	 
-	// We might get negative value of t, converting it to positive
-	 
-	if(t < 0)
-	t = (t + q); 
+  }
+  // Now compute the next sliding window for the text using previous value..
+  if(i<n-m){
+  t = (d*(t - source[i]*h) + source[i+m])%q;
+   
+  // We might get negative value of t, converting it to positive
+   
+  if(t < 0)
+  t = (t + q); 
     }
  }
 }

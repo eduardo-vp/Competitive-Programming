@@ -21,42 +21,42 @@ int color[N];
 vector<int> adj[N];
 
 bool dfs(int x){
-	bool ans = true;
-	//trace(x);
-	FOR(i,0,adj[x].size()){
-		int v = adj[x][i];
-		//trace(v);
-		if(color[v] == color[x]) return false;
-		if(color[v] == -1){
-			color[v] = 1-color[x];
-			ans = ans and dfs(v);
-		}
-	}
-	return ans;
+  bool ans = true;
+  //trace(x);
+  FOR(i,0,adj[x].size()){
+    int v = adj[x][i];
+    //trace(v);
+    if(color[v] == color[x]) return false;
+    if(color[v] == -1){
+      color[v] = 1-color[x];
+      ans = ans and dfs(v);
+    }
+  }
+  return ans;
 }
 
 bool check(){
-	fill(color,-1);
-	color[0] = 0;
-	return dfs(0);
+  fill(color,-1);
+  color[0] = 0;
+  return dfs(0);
 }
 
 int main(){
 
-	while(cin >> n and n){
-		cin >> l;
-		int x,y;
-		FOR(i,0,l){
-			cin >> x >> y;
-			adj[x].pb(y);
-			adj[y].pb(x);
-		}
+  while(cin >> n and n){
+    cin >> l;
+    int x,y;
+    FOR(i,0,l){
+      cin >> x >> y;
+      adj[x].pb(y);
+      adj[y].pb(x);
+    }
 
-		if(!check()) cout << "NOT "; 
-		cout << "BICOLORABLE." << endl;
+    if(!check()) cout << "NOT "; 
+    cout << "BICOLORABLE." << endl;
 
-		FOR(i,0,n) adj[i].clear();
-	}
+    FOR(i,0,n) adj[i].clear();
+  }
 
-	return 0;
+  return 0;
 }

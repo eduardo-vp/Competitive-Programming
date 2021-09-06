@@ -1,5 +1,5 @@
 /*
-	Convex Hull Trick
+  Convex Hull Trick
 */
 
 // dile a la jardinera que traigo flores
@@ -23,33 +23,33 @@ typedef pair<int,int> ii;
 ll n,c,x[N],dp[N];
 
 struct Line{
-	ll m,b;
-	Line(ll m, ll b) : m(m),b(b){}
-	ll f(ll x){ return m*x + b; }
-	ld intersect(Line &l){ return ld(b - l.b)/ld(l.m - m); }
+  ll m,b;
+  Line(ll m, ll b) : m(m),b(b){}
+  ll f(ll x){ return m*x + b; }
+  ld intersect(Line &l){ return ld(b - l.b)/ld(l.m - m); }
 };
 
 deque<Line> dq;
 
 void add(int i){
-	Line line(-2*x[i],x[i]*x[i]+dp[i-1]);
-	while(sz(dq) >= 2 and line.intersect(dq.back()) <= dq.back().intersect(dq[sz(dq)-2]))
-		dq.pop_back();
-	dq.push_back(line);
+  Line line(-2*x[i],x[i]*x[i]+dp[i-1]);
+  while(sz(dq) >= 2 and line.intersect(dq.back()) <= dq.back().intersect(dq[sz(dq)-2]))
+    dq.pop_back();
+  dq.push_back(line);
 }
 
 int main(){
 
-	scanf("%lld %lld",&n,&c);
-	FER(i,1,n+1) scanf("%lld",x+i);
+  scanf("%lld %lld",&n,&c);
+  FER(i,1,n+1) scanf("%lld",x+i);
 
-	dp[0] = 0;
-	for(int i = 1; i <= n; ++i){
-		add(i);
-		while(sz(dq) >= 2 and dq[0].f(x[i]) >= dq[1].f(x[i]))
-			dq.pop_front();
-		dp[i] = c + x[i]*x[i] + dq[0].f(x[i]);
-	}
-	printf("%lld\n",dp[n]);
-	return 0;
+  dp[0] = 0;
+  for(int i = 1; i <= n; ++i){
+    add(i);
+    while(sz(dq) >= 2 and dq[0].f(x[i]) >= dq[1].f(x[i]))
+      dq.pop_front();
+    dp[i] = c + x[i]*x[i] + dq[0].f(x[i]);
+  }
+  printf("%lld\n",dp[n]);
+  return 0;
 }

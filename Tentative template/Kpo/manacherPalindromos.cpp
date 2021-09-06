@@ -50,11 +50,11 @@ string manacher(string s) {
 }
 
 int main() {
-	
-	string str;
-	cin>>str;
-	string aux = manacher(str); //subpalindromo maximo
-	cout << aux << endl;
-	
-	return 0;
+  
+  string str;
+  cin>>str;
+  string aux = manacher(str); //subpalindromo maximo
+  cout << aux << endl;
+  
+  return 0;
 }

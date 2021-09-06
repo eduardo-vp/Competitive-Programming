@@ -19,30 +19,30 @@ int dp[15];
 int fact[15];
 
 void derangement(){
-	dp[0] = 1;
-	dp[1] = 0;
-	for(int i = 2; i <= 12; i++)
-		dp[i] = (i-1)*(dp[i-1]+dp[i-2]);
+  dp[0] = 1;
+  dp[1] = 0;
+  for(int i = 2; i <= 12; i++)
+    dp[i] = (i-1)*(dp[i-1]+dp[i-2]);
 }
 
 void factorial(){
-	fact[0] = 1;
-	for(int i = 1; i <= 12; i++)
-		fact[i] = i*fact[i-1];
+  fact[0] = 1;
+  for(int i = 1; i <= 12; i++)
+    fact[i] = i*fact[i-1];
 }
 
 int main(){
 
-	derangement();
-	factorial();
+  derangement();
+  factorial();
 
-	int tc;
-	cin >> tc;
-	while(tc--){
-		int n;
-		cin >> n;
-		cout << dp[n] << "/" << fact[n] << endl;
-	}
+  int tc;
+  cin >> tc;
+  while(tc--){
+    int n;
+    cin >> n;
+    cout << dp[n] << "/" << fact[n] << endl;
+  }
 
-	return 0;
+  return 0;
 }

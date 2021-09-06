@@ -20,17 +20,17 @@ typedef pair<int,int> ii;
 
 int main(){
 
-	int n;
-	while(cin >> n){
-		if(n == -1) break;
-		int ans = 0, sum = 0,x;
-		FER(i,0,n){
-			cin >> x;
-			sum += x;
-			if((sum%100) == 0) ++ans;
-		}
-		cout << ans << endl;
-	}
+  int n;
+  while(cin >> n){
+    if(n == -1) break;
+    int ans = 0, sum = 0,x;
+    FER(i,0,n){
+      cin >> x;
+      sum += x;
+      if((sum%100) == 0) ++ans;
+    }
+    cout << ans << endl;
+  }
 
-	return 0;
+  return 0;
 }

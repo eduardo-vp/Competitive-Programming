@@ -3,26 +3,26 @@ vector<int> scc[N];
 vector<int> adj[N];
 
 int tarjan(int n){
-	int gid = 1, num_scc = 0;
-	vector<int> num(n, 0), low(n, 0), vist(n, 0), stk;
-	function<void(int)> dfs = [&](int u){
-		num[u] = low[u] = gid++;
-		stk.push_back(u);
-		vist[u] = 1;
-		for(int v : adj[u]){
-			if(num[v] == 0) dfs(v);
-			if(vist[v]) low[u] = min(low[u],low[v]);
-		}
-		if(num[u] == low[u]){
-			int v; do{
-				v = stk.back(); stk.pop_back(); vist[v] = 0;
-				scc[num_scc].push_back(v);
-			}while(u != v);
-			num_scc++;
-		}
-	};
-	for(int i = 0; i < n; ++i){
-		if(!num[i]) dfs(i);
-	}
-	return num_scc;
+  int gid = 1, num_scc = 0;
+  vector<int> num(n, 0), low(n, 0), vist(n, 0), stk;
+  function<void(int)> dfs = [&](int u){
+    num[u] = low[u] = gid++;
+    stk.push_back(u);
+    vist[u] = 1;
+    for(int v : adj[u]){
+      if(num[v] == 0) dfs(v);
+      if(vist[v]) low[u] = min(low[u],low[v]);
+    }
+    if(num[u] == low[u]){
+      int v; do{
+        v = stk.back(); stk.pop_back(); vist[v] = 0;
+        scc[num_scc].push_back(v);
+      }while(u != v);
+      num_scc++;
+    }
+  };
+  for(int i = 0; i < n; ++i){
+    if(!num[i]) dfs(i);
+  }
+  return num_scc;
 }

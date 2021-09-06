@@ -117,8 +117,8 @@ int main() {
      int A[]={2,2,16,3,4,4,6,8};
      heapSort(A,8);
      f(i,0,8){
-     	if(i!=7)printf("%d->",A[i]);
-     	else printf("%d\n",A[i]);
+      if(i!=7)printf("%d->",A[i]);
+      else printf("%d\n",A[i]);
      }
     return 0;
 }

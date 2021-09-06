@@ -50,50 +50,50 @@ void init(){
  f(i,0,n) v[i]=i;
 }
 int findSet(int i){
-	if(i==v[i]) return i;
-	else return (v[i]=findSet(v[i]));
+  if(i==v[i]) return i;
+  else return (v[i]=findSet(v[i]));
 }
 bool isSameset(int i,int j){
-	return(findSet(i)==findSet(j));
+  return(findSet(i)==findSet(j));
 }
 void unionSet(int i,int j){
-	v[findSet(i)]=findSet(j);
+  v[findSet(i)]=findSet(j);
 }
 int kruskals(int skip_index){
-	init();
-	int best_mst=0;
-	f(i,0,SZ(edge)){
-		if(i==skip_index) continue;
-		pii u=edge[i];
-		int a=u.sc.fr;int b=u.sc.sc;
-		if(isSameset(a,b)) continue;
-		best_mst+=u.fr;
-		unionSet(a,b);
-		if(skip_index==-1) sol.pb(i);
-	}
-	 f(i,1,n){
-	 	if(!isSameset(i,0)) return INT_MAX;
-	 }
-	 return best_mst;
+  init();
+  int best_mst=0;
+  f(i,0,SZ(edge)){
+    if(i==skip_index) continue;
+    pii u=edge[i];
+    int a=u.sc.fr;int b=u.sc.sc;
+    if(isSameset(a,b)) continue;
+    best_mst+=u.fr;
+    unionSet(a,b);
+    if(skip_index==-1) sol.pb(i);
+  }
+   f(i,1,n){
+    if(!isSameset(i,0)) return INT_MAX;
+   }
+   return best_mst;
 }
 int main() {
      int t,m,a,b,w;
      cin>>t;
      f(k,0,t){
-     	cin>>n>>m;
-     	edge.clear();sol.clear();
-     	f(i,0,m){
-     		cin>>a>>b>>w;
-     		a--;b--;
-     		edge.pb(mp(w,mp(a,b)));
-     	}
-     	sort(all(edge));
-     	int best_mst = kruskals(-1);
-     	int second_best_mst = INT_MAX;
-     	f(i,0,SZ(sol)){
-     		  second_best_mst = min(kruskals(sol[i]), second_best_mst);
-     	}
-     	printf("%d %d\n",best_mst,second_best_mst);
+      cin>>n>>m;
+      edge.clear();sol.clear();
+      f(i,0,m){
+        cin>>a>>b>>w;
+        a--;b--;
+        edge.pb(mp(w,mp(a,b)));
+      }
+      sort(all(edge));
+      int best_mst = kruskals(-1);
+      int second_best_mst = INT_MAX;
+      f(i,0,SZ(sol)){
+          second_best_mst = min(kruskals(sol[i]), second_best_mst);
+      }
+      printf("%d %d\n",best_mst,second_best_mst);
      }
     return 0;
 }

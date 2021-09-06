@@ -20,112 +20,112 @@ typedef pair<int,int> ii;
 vector<int> adj[N];
 
 struct CentroidD{
-	int n;
-	int cpar[N],tsz[N];
-	int dfs(int u, int p){
-		tsz[u] = 1;
-		for(int v : adj[u]) if(v != p and cpar[v] == -1){
-			tsz[u] += dfs(v,u);
-		}
-		return tsz[u];
-	}
+  int n;
+  int cpar[N],tsz[N];
+  int dfs(int u, int p){
+    tsz[u] = 1;
+    for(int v : adj[u]) if(v != p and cpar[v] == -1){
+      tsz[u] += dfs(v,u);
+    }
+    return tsz[u];
+  }
 
-	void decomp(int u, int p, int sb, int prevc){
-		for(int v : adj[u]) if(v != p and cpar[v] == -1 and 2*tsz[v] > sb){
-			decomp(v,u,sb,prevc);
-			return;
-		}
-		cpar[u] = prevc; // careful if prevc == -2
-		for(int v : adj[u]) if(cpar[v] == -1){
-			dfs(v,u);
-			decomp(v,u,tsz[v],u);
-		}
-	}
-	
-	void init(int _n){
-		n = _n;
-		dfs(1,-1);
-		fill(cpar,-1);
-		decomp(1,-1,tsz[1],-2);
-		/*
-		fill(P,-1); 
-		for(int i = 1; i <= n; ++i)ans[i] = 1e9;
-		buildLca();
-		update(1);
-		*/
-	}
-	
-	/*
-	int dep[N],P[N][LG],ans[N];
-	void addEdge(int a, int b){
-		adj[a].pb(b);
-		adj[b].pb(a);
-	}
-	void buildLca(int u = 1, int pai = -1, int d = 0){
-		dep[u] = d;
-		P[u][0] = pai;
-		for(int i = 1; i < LG; ++i)
-			if(P[u][i-1] != -1)
-				P[u][i] = P[P[u][i-1]][i-1];
-		for(int v : adj[u]) if(v != pai)
-			buildLca(v,u,d+1);
-	}
+  void decomp(int u, int p, int sb, int prevc){
+    for(int v : adj[u]) if(v != p and cpar[v] == -1 and 2*tsz[v] > sb){
+      decomp(v,u,sb,prevc);
+      return;
+    }
+    cpar[u] = prevc; // careful if prevc == -2
+    for(int v : adj[u]) if(cpar[v] == -1){
+      dfs(v,u);
+      decomp(v,u,tsz[v],u);
+    }
+  }
+  
+  void init(int _n){
+    n = _n;
+    dfs(1,-1);
+    fill(cpar,-1);
+    decomp(1,-1,tsz[1],-2);
+    /*
+    fill(P,-1); 
+    for(int i = 1; i <= n; ++i)ans[i] = 1e9;
+    buildLca();
+    update(1);
+    */
+  }
+  
+  /*
+  int dep[N],P[N][LG],ans[N];
+  void addEdge(int a, int b){
+    adj[a].pb(b);
+    adj[b].pb(a);
+  }
+  void buildLca(int u = 1, int pai = -1, int d = 0){
+    dep[u] = d;
+    P[u][0] = pai;
+    for(int i = 1; i < LG; ++i)
+      if(P[u][i-1] != -1)
+        P[u][i] = P[P[u][i-1]][i-1];
+    for(int v : adj[u]) if(v != pai)
+      buildLca(v,u,d+1);
+  }
 
-	int __lca(int a, int b){
-		if(dep[a] > dep[b]) swap(a,b);
-		for(int i = LG-1; i >= 0; --i)
-			if(dep[b] - (1 << i) >= dep[a])
-				b = P[b][i];
-		if(a == b) return a;
-		for(int i = LG-1; i >= 0; --i)
-			if(P[a][i] != P[b][i])
-				a = P[a][i], b = P[b][i];
-		return P[a][0];
-	}
+  int __lca(int a, int b){
+    if(dep[a] > dep[b]) swap(a,b);
+    for(int i = LG-1; i >= 0; --i)
+      if(dep[b] - (1 << i) >= dep[a])
+        b = P[b][i];
+    if(a == b) return a;
+    for(int i = LG-1; i >= 0; --i)
+      if(P[a][i] != P[b][i])
+        a = P[a][i], b = P[b][i];
+    return P[a][0];
+  }
 
-	int dist(int a, int b){
-		return dep[a] + dep[b] - 2*dep[__lca(a,b)];
-	}
-	void query(int u){
-		int resp = 1e9,x = u;
-		while(u != -2){
-			resp = min(resp,ans[u] + dist(u,x));
-			u = cpar[u];
-		}
-		cout << resp << endl;
-	}
+  int dist(int a, int b){
+    return dep[a] + dep[b] - 2*dep[__lca(a,b)];
+  }
+  void query(int u){
+    int resp = 1e9,x = u;
+    while(u != -2){
+      resp = min(resp,ans[u] + dist(u,x));
+      u = cpar[u];
+    }
+    cout << resp << endl;
+  }
 
-	void update(int u){
-		int x = u;
-		while(u != -2){
-			ans[u] = min(ans[u],dist(u,x));
-			u = cpar[u];
-		}
-	}
-	*/
-	
+  void update(int u){
+    int x = u;
+    while(u != -2){
+      ans[u] = min(ans[u],dist(u,x));
+      u = cpar[u];
+    }
+  }
+  */
+  
 };
 
 CentroidD cd;
 
 int main(){
 
-	fastio;
-	int n,m,a,b;
-	cin >> n >> m;
-	for(int i = 1; i < n; ++i){
-		cin >> a >> b;
-		cd.addEdge(a,b);
-	}
+  fastio;
+  int n,m,a,b;
+  cin >> n >> m;
+  for(int i = 1; i < n; ++i){
+    cin >> a >> b;
+    cd.addEdge(a,b);
+  }
 
-	cd.init(n);
+  cd.init(n);
 
-	int t,u;
-	while(m--){
-		cin >> t >> u;
-		if(t == 1) cd.update(u);
-		else cd.query(u);
-	}
+  int t,u;
+  while(m--){
+    cin >> t >> u;
+    if(t == 1) cd.update(u);
+    else cd.query(u);
+  }
 
-	return 0;
+  return 0;
 }

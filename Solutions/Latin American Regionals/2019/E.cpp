@@ -17,23 +17,23 @@ int dp[N];
 
 int main(){
 
-	ll n,k;
-	string cad;
-	cin >> cad >> k;
-	n = sz(cad);
-	cad += cad;
-	dp[sz(cad)] = 0;
-	for(int i = sz(cad)-1; i >= 0; --i){
-		if(cad[i] == 'P') dp[i] = dp[i+1]+1;
-	}
+  ll n,k;
+  string cad;
+  cin >> cad >> k;
+  n = sz(cad);
+  cad += cad;
+  dp[sz(cad)] = 0;
+  for(int i = sz(cad)-1; i >= 0; --i){
+    if(cad[i] == 'P') dp[i] = dp[i+1]+1;
+  }
 
-	ll ans = n*k;
-	for(int i = 0; i < n; ++i){
-		if(cad[i] == 'E') continue;
-		int len = min(dp[i],int(k));
-		ans -= len;
-	}
-	cout << ans << endl;
-	return 0;
+  ll ans = n*k;
+  for(int i = 0; i < n; ++i){
+    if(cad[i] == 'E') continue;
+    int len = min(dp[i],int(k));
+    ans -= len;
+  }
+  cout << ans << endl;
+  return 0;
 }
 

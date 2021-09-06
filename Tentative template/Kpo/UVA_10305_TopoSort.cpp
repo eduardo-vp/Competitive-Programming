@@ -44,33 +44,33 @@ bool vis[100+5];
 void dfs(int u){
  vis[u]=true;
  f(i,0,int(adj[u].size())){
- 	if(!vis[adj[u][i]]){
- 		dfs(adj[u][i]);
- 	}
+  if(!vis[adj[u][i]]){
+    dfs(adj[u][i]);
+  }
  }
  ts.pb(u);
 }
 int main() {
      int a,b;
      while(scanf("%d %d",&n,&m)){
-     	if(n==0 && m==0) break;
-     	f(i,0,n) adj.pb(vi());
-     	f(i,0,m){
-     		scanf("%d %d",&a,&b);
-     		adj[a-1].pb(b-1);
-     	}
-     	clr(vis,false);
-     	f(i,0,n){
-     		if(!vis[i]){
-     			dfs(i);
-     		}
-     	}
-     	fd(i,ts.size()-1,0){
-     		if(i==0) printf("%d\n",ts[i]+1);
-     		else printf("%d ",ts[i]+1);
-     	}
-     	adj.clear();
-     	ts.clear();
+      if(n==0 && m==0) break;
+      f(i,0,n) adj.pb(vi());
+      f(i,0,m){
+        scanf("%d %d",&a,&b);
+        adj[a-1].pb(b-1);
+      }
+      clr(vis,false);
+      f(i,0,n){
+        if(!vis[i]){
+          dfs(i);
+        }
+      }
+      fd(i,ts.size()-1,0){
+        if(i==0) printf("%d\n",ts[i]+1);
+        else printf("%d ",ts[i]+1);
+      }
+      adj.clear();
+      ts.clear();
      }
     return 0;
 }

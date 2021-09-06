@@ -53,25 +53,25 @@ ll sieve_size;
 bitset<10000010> bs;
 vi primes;
 void sieve(ll upperbound){
-	sieve_size=upperbound+1;
-	bs.set();
-	bs[0]=bs[1]=0;
-	for(ll i=2;i<=sieve_size;i++){
-		if(bs[i]){
-			for(ll j=i*i;j<=sieve_size;j+=i){
-			bs[j]=0;
-			}
-			primes.pb((int) i);
-		}
-	}
+  sieve_size=upperbound+1;
+  bs.set();
+  bs[0]=bs[1]=0;
+  for(ll i=2;i<=sieve_size;i++){
+    if(bs[i]){
+      for(ll j=i*i;j<=sieve_size;j+=i){
+      bs[j]=0;
+      }
+      primes.pb((int) i);
+    }
+  }
 }
 bool isprime(ll n){
-	if(n<=sieve_size)	return bs[n];//para primos ppequeños
-	f(i,0,(int)SZ(primes)){
-		if(n%primes[i]==0) return false;
-		
-	}
-	return true;
+  if(n<=sieve_size) return bs[n];//para primos ppequeños
+  f(i,0,(int)SZ(primes)){
+    if(n%primes[i]==0) return false;
+    
+  }
+  return true;
 }
 int main() {
     sieve(1000000);

@@ -37,8 +37,8 @@ typedef vector <ii> vii;
 typedef vector<int> vi;
 vi a;
 int* LIS(int n){
-	
-	int* lis = new int[n];
+  
+  int* lis = new int[n];
     int b[n];
     int maxLength = 1, pos;
     lis[0] = 1, b[0] = a[0];
@@ -54,16 +54,16 @@ int* LIS(int n){
 int main() {
      int t,n;
      while(scanf("%d",&t)!=EOF){
-     	a.clear();
-     	f(i,0,t){
-     		scanf("%d",&n);
-     		a.push_back(n);
-     	}
-     	int* lis=LIS(a.size());
+      a.clear();
+      f(i,0,t){
+        scanf("%d",&n);
+        a.push_back(n);
+      }
+      int* lis=LIS(a.size());
         reverse(a.begin(), a.end());
         int* lds = LIS(a.size());
         reverse(lds, lds + a.size());
-     	int MAX_LIS = -1;
+      int MAX_LIS = -1;
         for (size_t i = 0; i < a.size(); i++)
             MAX_LIS = max(MAX_LIS, min(lis[i], lds[i]));
         printf("%d\n",2*MAX_LIS-1);

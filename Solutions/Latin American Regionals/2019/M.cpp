@@ -17,21 +17,21 @@ int a[N];
 
 int main(){
 
-	int n,x;
-	cin >> n >> x;
-	for(int i = 0; i < n; ++i)
-		cin >> a[i];
-	
-	int ans = 0;
-	for(int i = 0; i < n; ++i){
-		int cur = 1;
-		for(int j = i+1; j < n; ++j){
-			if(abs(a[j-1]-a[j]) <= x) cur++;
-			else break;
-		}
-		ans = max(ans,cur);
-	}
-	cout << ans << endl;
-	return 0;
+  int n,x;
+  cin >> n >> x;
+  for(int i = 0; i < n; ++i)
+    cin >> a[i];
+  
+  int ans = 0;
+  for(int i = 0; i < n; ++i){
+    int cur = 1;
+    for(int j = i+1; j < n; ++j){
+      if(abs(a[j-1]-a[j]) <= x) cur++;
+      else break;
+    }
+    ans = max(ans,cur);
+  }
+  cout << ans << endl;
+  return 0;
 }
 

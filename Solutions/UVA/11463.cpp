@@ -22,56 +22,56 @@ vector<vi> g;
 queue<int> cola;
 
 void bfs(){
-	ans = floyd[s][d];
-	while(!cola.empty()){
-		int u = cola.front(); cola.pop();
-		for(int i = 0; i < int(g[u].size()); i++){
-			int v = g[u][i];
-			if(dist[v] == INF){
-				dist[v] = dist[u]+1;
-				cola.push(v);
-				ans = max(ans,dist[v]+floyd[v][d]);
-				//trace(v); trace(d); trace(floyd[v][d]);
-			}
-		}
-	}
+  ans = floyd[s][d];
+  while(!cola.empty()){
+    int u = cola.front(); cola.pop();
+    for(int i = 0; i < int(g[u].size()); i++){
+      int v = g[u][i];
+      if(dist[v] == INF){
+        dist[v] = dist[u]+1;
+        cola.push(v);
+        ans = max(ans,dist[v]+floyd[v][d]);
+        //trace(v); trace(d); trace(floyd[v][d]);
+      }
+    }
+  }
 }
 
 int main(){
 
-	int tc,cont = 1;
-	cin >> tc;
-	while(tc--){
-		int n,r,x,y;
-		cin >> n >> r;
-		
-		for(int i = 0; i < n; i++){
-			for(int j = 0; j < n; j++)
-				floyd[i][j] = INF;
-			floyd[i][i] = 0;
-		}
+  int tc,cont = 1;
+  cin >> tc;
+  while(tc--){
+    int n,r,x,y;
+    cin >> n >> r;
+    
+    for(int i = 0; i < n; i++){
+      for(int j = 0; j < n; j++)
+        floyd[i][j] = INF;
+      floyd[i][i] = 0;
+    }
 
-		g.assign(n,vi());
-		for(int i = 0; i < r; i++){
-			cin >> x >> y;
-			g[x].pb(y); g[y].pb(x);
-			floyd[x][y] = floyd[y][x] = 1;
-		}
+    g.assign(n,vi());
+    for(int i = 0; i < r; i++){
+      cin >> x >> y;
+      g[x].pb(y); g[y].pb(x);
+      floyd[x][y] = floyd[y][x] = 1;
+    }
 
-		//floyd
-		for(int k = 0; k < n; k++)
-			for(int i = 0; i < n; i++)
-				for(int j = 0; j < n; j++)
-					floyd[i][j] = min(floyd[i][j],floyd[i][k]+floyd[k][j]);
+    //floyd
+    for(int k = 0; k < n; k++)
+      for(int i = 0; i < n; i++)
+        for(int j = 0; j < n; j++)
+          floyd[i][j] = min(floyd[i][j],floyd[i][k]+floyd[k][j]);
 
-		cin >> s >> d;
-		//trace(s);trace(d);
-		FOR(i,0,n) dist[i] = INF;
-		dist[s] = ans = 0;
-		cola.push(s);
-		bfs();
-		cout << "Case " << cont++ << ": " << ans << endl;
-	}	
+    cin >> s >> d;
+    //trace(s);trace(d);
+    FOR(i,0,n) dist[i] = INF;
+    dist[s] = ans = 0;
+    cola.push(s);
+    bfs();
+    cout << "Case " << cont++ << ": " << ans << endl;
+  } 
 
-	return 0;
+  return 0;
 }

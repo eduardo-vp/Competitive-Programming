@@ -40,40 +40,40 @@ vector < vi > adj;
 int main() {
      int n,l,a,b;
      while(scanf("%d",&n)){
-     	if(n==0) break;
-     	scanf("%d",&l);
-     	f(i,0,n){
-     		adj.push_back(vi());
-     	}
-     	f(i,0,l){
-     		scanf("%d %d",&a,&b);
-     		adj[a].push_back(b);
-     	}
-     	//proceso para verificar si es bipartito
-     	queue<int> q;q.push(0);
-     	int color[n+1];
-     	clr(color,-1);
-     	color[0]=0;
-     	bool isBipartite=true;
-     	while(!q.empty() && isBipartite){
-     		int u=q.front();
-     		q.pop();
-     		f(j,0,(int)adj[u].size()){
-     			int v=adj[u][j];
-     			if(color[v]==-1){
-     				color[v]=1-color[u];//cambio de color
-     				q.push(v);
-     			}
-     			else if(color[v]==color[u]){
-     				isBipartite=false;
-     				break;
-     			}
-     		}
-     	}
-     	if(!isBipartite){
-     		printf("NOT BICOLORABLE.\n");
-     	}else printf("BICOLORABLE.\n");
-     	adj.clear();
+      if(n==0) break;
+      scanf("%d",&l);
+      f(i,0,n){
+        adj.push_back(vi());
+      }
+      f(i,0,l){
+        scanf("%d %d",&a,&b);
+        adj[a].push_back(b);
+      }
+      //proceso para verificar si es bipartito
+      queue<int> q;q.push(0);
+      int color[n+1];
+      clr(color,-1);
+      color[0]=0;
+      bool isBipartite=true;
+      while(!q.empty() && isBipartite){
+        int u=q.front();
+        q.pop();
+        f(j,0,(int)adj[u].size()){
+          int v=adj[u][j];
+          if(color[v]==-1){
+            color[v]=1-color[u];//cambio de color
+            q.push(v);
+          }
+          else if(color[v]==color[u]){
+            isBipartite=false;
+            break;
+          }
+        }
+      }
+      if(!isBipartite){
+        printf("NOT BICOLORABLE.\n");
+      }else printf("BICOLORABLE.\n");
+      adj.clear();
      }
     return 0;
 }

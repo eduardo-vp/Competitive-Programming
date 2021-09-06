@@ -70,7 +70,7 @@ void st_build(int vertex, int L, int R) {
  } 
 }
 void set_utype(int vertex,char tipo){
-	if (tipo=='I') {
+  if (tipo=='I') {
         switch(st[vertex].tipo)
         {
             case 'F': st[vertex].tipo = 'E'; break;
@@ -81,29 +81,29 @@ void set_utype(int vertex,char tipo){
         }
     }
     else st[vertex].tipo = tipo;
-	
+  
 }
 void change(int vertex){
-	switch(st[vertex].tipo){
-		case 'F': st[vertex].value = st[vertex].len; break;
+  switch(st[vertex].tipo){
+    case 'F': st[vertex].value = st[vertex].len; break;
         case 'E': st[vertex].value = 0; break;
         case 'I': st[vertex].value = st[vertex].len-st[vertex].value; break;
         default: return;
-	}
-	 set_utype(vertex*2,st[vertex].tipo);   //After applying, push down the cast type to its childrend
+  }
+   set_utype(vertex*2,st[vertex].tipo);   //After applying, push down the cast type to its childrend
      set_utype(vertex*2+1,st[vertex].tipo);
      st[vertex].tipo = -1;             //Its cast type is now NULL
 }
 void update(int vertex,int L,int R,int i,int j,char tipo){
-	int mid=(L+R)/2;
-	 if (L>=i && R<=j) set_utype(vertex,tipo);   //If it fits in the interval, set it cast type
+  int mid=(L+R)/2;
+   if (L>=i && R<=j) set_utype(vertex,tipo);   //If it fits in the interval, set it cast type
      change(vertex);                             //Do the cast type
      if (L>=i && R<=j) return;
      else if (L>j || R<i) return;                     //If it's out then quit
      else{
-     	update(vertex*2,L,mid,i,j,tipo);
-     	update(vertex*2+1,mid+1,R,i,j,tipo);
-     	st[vertex].value = st[vertex*2].value+st[vertex*2+1].value;
+      update(vertex*2,L,mid,i,j,tipo);
+      update(vertex*2+1,mid+1,R,i,j,tipo);
+      st[vertex].value = st[vertex*2].value+st[vertex*2+1].value;
      }
 }
 int answer(int vertex, int l, int r, int i, int j) {
@@ -122,32 +122,32 @@ int main() {
      string s1,s2;
      scanf("%d",&t);
      f(l,1,t+1){
-     	a.clear();
-     	scanf("%d",&n);
-     	f(i,0,n){
-     		scanf("%d\n",&m);
-     		getline(cin,s1);
-     		// debug(s1);
-     		f(j,0,m){
-     			f(k,0,SZ(s1)){
-     			a.pb(int(s1[k])-48);
-     			}
-     		}
-     	}
+      a.clear();
+      scanf("%d",&n);
+      f(i,0,n){
+        scanf("%d\n",&m);
+        getline(cin,s1);
+        // debug(s1);
+        f(j,0,m){
+          f(k,0,SZ(s1)){
+          a.pb(int(s1[k])-48);
+          }
+        }
+      }
         st_build(1,0,SZ(a)-1);
-     	scanf("%d\n",&q);
-     	printf("Case %d:\n",l);
-     	int cnt=0;
-     	f(i,0,q){
-     		 cin >> ch >> u >> v;
-     		 //debug(ch);debug(u);debug(v);
-     		if (ch!='S') update(1,0,SZ(a)-1,u,v,ch);
+      scanf("%d\n",&q);
+      printf("Case %d:\n",l);
+      int cnt=0;
+      f(i,0,q){
+         cin >> ch >> u >> v;
+         //debug(ch);debug(u);debug(v);
+        if (ch!='S') update(1,0,SZ(a)-1,u,v,ch);
             else{
                 cnt++;
                 cout << "Q" << cnt << ": " << answer(1,0,SZ(a)-1,u,v) << endl;
             }
 
-     	}
+      }
      }
     return 0;
 }

@@ -19,39 +19,39 @@ ll dp[N];
 vector<int> adj[N];
 
 ll dfs(int u){
-	if(vist[u]) return dp[u];
-	vist[u] = 1;
-	if(!sz(adj[u])) return dp[u] = 1;
-	ll ans = 0;
-	for(int v : adj[u]){
-		ans += dfs(v);
-		ans %= MOD;
-	}
-	return dp[u] = ans;
+  if(vist[u]) return dp[u];
+  vist[u] = 1;
+  if(!sz(adj[u])) return dp[u] = 1;
+  ll ans = 0;
+  for(int v : adj[u]){
+    ans += dfs(v);
+    ans %= MOD;
+  }
+  return dp[u] = ans;
 }
 
 int main(){
 
-	fastio;
-	int n,l;
-	cin >> n >> l;
-	for(int i = 1; i <= l; ++i){
-		int k,x;
-		cin >> k;
-		for(int j = 0; j < k; ++j){
-			cin >> x;
-			adj[i].pb(x);
-		}
-	}
+  fastio;
+  int n,l;
+  cin >> n >> l;
+  for(int i = 1; i <= l; ++i){
+    int k,x;
+    cin >> k;
+    for(int j = 0; j < k; ++j){
+      cin >> x;
+      adj[i].pb(x);
+    }
+  }
 
-	fill(vist,0);
-	ll ans1 = dfs(1);
-	int ans2 = 0;
-	for(int i = l+1; i <= n; ++i)
-		ans2 += vist[i];
-	
-	cout << ans1 << " " << ans2 << endl;
+  fill(vist,0);
+  ll ans1 = dfs(1);
+  int ans2 = 0;
+  for(int i = l+1; i <= n; ++i)
+    ans2 += vist[i];
+  
+  cout << ans1 << " " << ans2 << endl;
 
-	return 0;
+  return 0;
 }
 

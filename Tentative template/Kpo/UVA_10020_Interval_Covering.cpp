@@ -52,77 +52,77 @@ int M,cont;
 struct interval{
  int L,R;
  bool operator <(const interval &s) const{
- 	if(L<s.L){
- 		return true;
- 	}else if (L==s.L){
- 		return (R>s.R);
- 	}else return false;
+  if(L<s.L){
+    return true;
+  }else if (L==s.L){
+    return (R>s.R);
+  }else return false;
  }
 };
 interval arr[MAXN];
  //para este problema se asume que empieza desde [0..M]!!!!
 bool isNotCut(int a,int b){
-	return (b< 0 || a > M);
+  return (b< 0 || a > M);
 }
 int main() {
      int T,a,b;
      scanf("%d",&T);
      f(l,0,T){
-     	if(l>0) printf("\n");
-     	cont=0;
-     	scanf("%d",&M);
-     	while(scanf("%d %d",&a,&b)){
-     	  if(a==0 && b==0) break;
-     	  if(isNotCut(a,b)) continue;
-     	  arr[cont].L=a;arr[cont].R=b;
-     	  cont++;
-     	}
-     	sort(arr,arr+cont);//paso necesario
-     	bool failed = false;
-     	// LeftEnd save the current left end and
+      if(l>0) printf("\n");
+      cont=0;
+      scanf("%d",&M);
+      while(scanf("%d %d",&a,&b)){
+        if(a==0 && b==0) break;
+        if(isNotCut(a,b)) continue;
+        arr[cont].L=a;arr[cont].R=b;
+        cont++;
+      }
+      sort(arr,arr+cont);//paso necesario
+      bool failed = false;
+      // LeftEnd save the current left end and
         // rightEnd save the current right end
         int leftEnd = 0, rightEnd;  
           // The next index to put in the result
        int index = 0;
        vector<interval> output;
       
-     	//Interval Covering
-     	if(cont>0 && arr[0].L<=0){
-     		rightEnd=arr[index].R;
-     		f(i,1,cont){
-     			if(arr[i].L<=leftEnd){
-     				// printf("%d->%d\n",arr[i].L,leftEnd);
-     				if(arr[i].R>rightEnd){
-     					rightEnd=arr[i].R;//selecciono el más extenso
-     					index=i;
-     				}
-     			}else if(arr[i].L>leftEnd && arr[i].R>rightEnd){
-     				if(arr[i].L>rightEnd){
-     					failed=true;
-     					break;
-     				}
-     				//si esta totalmente cubierto
-     				if(arr[index].R>=M) break;
-     				//si no, actualizamos el resultado
-     				output.pb(arr[index]);
-     				leftEnd = rightEnd;
-     				rightEnd = arr[i].R;
-     				index=i;
-     			}
-     		}
-     		 output.pb(arr[index]);
-     	}else{
-     		failed=true;
-     	}
-     	if(!failed && rightEnd>=M){
-     		printf("%d\n",SZ(output));
-     		f(i,0,SZ(output)){
-     			printf("%d %d\n",output[i].L,output[i].R);
-     		}
-     	}else{
-     		printf("0\n");
-     	}
-     	
+      //Interval Covering
+      if(cont>0 && arr[0].L<=0){
+        rightEnd=arr[index].R;
+        f(i,1,cont){
+          if(arr[i].L<=leftEnd){
+            // printf("%d->%d\n",arr[i].L,leftEnd);
+            if(arr[i].R>rightEnd){
+              rightEnd=arr[i].R;//selecciono el más extenso
+              index=i;
+            }
+          }else if(arr[i].L>leftEnd && arr[i].R>rightEnd){
+            if(arr[i].L>rightEnd){
+              failed=true;
+              break;
+            }
+            //si esta totalmente cubierto
+            if(arr[index].R>=M) break;
+            //si no, actualizamos el resultado
+            output.pb(arr[index]);
+            leftEnd = rightEnd;
+            rightEnd = arr[i].R;
+            index=i;
+          }
+        }
+         output.pb(arr[index]);
+      }else{
+        failed=true;
+      }
+      if(!failed && rightEnd>=M){
+        printf("%d\n",SZ(output));
+        f(i,0,SZ(output)){
+          printf("%d %d\n",output[i].L,output[i].R);
+        }
+      }else{
+        printf("0\n");
+      }
+      
         
      }
     return 0;

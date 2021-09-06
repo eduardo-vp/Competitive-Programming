@@ -27,37 +27,37 @@ int n,h;
 int pos[1024],dp[50010][1010];
 
 int solve(int p, int n){
-	if(p < 0) return -INF;
-	if(dp[p][n] != -1) return dp[p][n];
-	if(p == 0 or n == 0) return -INF;
-	int prev = pos[n-1];
-	int dif = p - prev;
-	int ans = -INF;
-	if(dif <= h) ans = max(ans,solve(prev,n-1)+(pos[n] == p));
-	ans = max(ans,solve(p-h,n-1) + (pos[n] == p));
-	return dp[p][n] = ans;
+  if(p < 0) return -INF;
+  if(dp[p][n] != -1) return dp[p][n];
+  if(p == 0 or n == 0) return -INF;
+  int prev = pos[n-1];
+  int dif = p - prev;
+  int ans = -INF;
+  if(dif <= h) ans = max(ans,solve(prev,n-1)+(pos[n] == p));
+  ans = max(ans,solve(p-h,n-1) + (pos[n] == p));
+  return dp[p][n] = ans;
 }
 
 int main(){
 
-	fastio;	
-	int x;
-	while(cin >> n >> h){
-		if(n == -1 and h == -1) break;
-		fill(pos,-1);
-		pos[0] = 0;
-		int sum = 0;
-		FER(i,0,n-1){
-			cin >> x;
-			sum += x;
-			pos[i+1] = sum;
-		}
-		if(sum > h*(n-1)){ cout << -1 << endl; continue; }
-		FER(i,0,sum+1) FER(j,0,n) dp[i][j] = -1;
-		dp[0][0] = 1;
-		int ans = solve(sum,n-1);
-		cout << (n-ans) << endl;
-	}
-	
-	return 0;
+  fastio; 
+  int x;
+  while(cin >> n >> h){
+    if(n == -1 and h == -1) break;
+    fill(pos,-1);
+    pos[0] = 0;
+    int sum = 0;
+    FER(i,0,n-1){
+      cin >> x;
+      sum += x;
+      pos[i+1] = sum;
+    }
+    if(sum > h*(n-1)){ cout << -1 << endl; continue; }
+    FER(i,0,sum+1) FER(j,0,n) dp[i][j] = -1;
+    dp[0][0] = 1;
+    int ans = solve(sum,n-1);
+    cout << (n-ans) << endl;
+  }
+  
+  return 0;
 }

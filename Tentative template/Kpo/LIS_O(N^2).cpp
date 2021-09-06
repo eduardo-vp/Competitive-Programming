@@ -38,16 +38,16 @@ typedef vector<int> vi;
 int Lis[TAM];
 int arr[] = { 10, 22, 9, 33, 21, 50, 41, 60,80 };
 int LIS(int n){
-	int max_lis=-1;
-	f(i,0,n) Lis[i]=1;
-	f(i,1,n){
-		f(j,0,i){
-			if(arr[i]>arr[j] && Lis[i]<Lis[j]+1) Lis[i]=Lis[j]+1;
-		}
-		if ( max_lis < Lis[i] )
+  int max_lis=-1;
+  f(i,0,n) Lis[i]=1;
+  f(i,1,n){
+    f(j,0,i){
+      if(arr[i]>arr[j] && Lis[i]<Lis[j]+1) Lis[i]=Lis[j]+1;
+    }
+    if ( max_lis < Lis[i] )
          max_lis = Lis[i];
-	}
-	return max_lis;
+  }
+  return max_lis;
 }
 int main() {
     int n = sizeof(arr)/sizeof(arr[0]);

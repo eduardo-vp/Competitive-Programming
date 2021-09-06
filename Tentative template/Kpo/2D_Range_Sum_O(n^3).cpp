@@ -88,20 +88,20 @@ int kadane(int* arr, int* start, int* finish, int n)
  
 int main() {
      int t,n;//numero de casos
-   	 scanf("%d",&n);
-     	f(left,0,n){
-     		f(right,0,n){
-     			scanf("%d",&A[left][right]);
-     		}
-     	}
-     	//procedimiento para el calculo del MAX 2D-SUM
-     	int max_sum=INT_MIN,final_top,final_bottom,final_left,final_right;
+     scanf("%d",&n);
+      f(left,0,n){
+        f(right,0,n){
+          scanf("%d",&A[left][right]);
+        }
+      }
+      //procedimiento para el calculo del MAX 2D-SUM
+      int max_sum=INT_MIN,final_top,final_bottom,final_left,final_right;
         int temp[n+1];int sum, start, finish;
-     	f(left,0,n){
-     		//inicializo temp a 0
-     		clr(temp,0);
-     		f(right,left,n){
-     			// Calculate sum between current left and right for every row 'i'
+      f(left,0,n){
+        //inicializo temp a 0
+        clr(temp,0);
+        f(right,left,n){
+          // Calculate sum between current left and right for every row 'i'
                 f(k,0,n) temp[k] += A[k][right];
                 // Find the maximum sum subarray in temp[]. The kadane() function
                 // also sets values of start and finish.  So 'sum' is sum of
@@ -109,21 +109,21 @@ int main() {
                 //  maximum sum with boundary columns strictly as i and j.
                 sum = kadane(temp, &start, &finish, n);
                 // Compare sum with maximum sum so far. If sum is more, then update
-	            // maxSum and other output values
-	            if (sum > max_sum)
-	            {
-	                max_sum = sum;
-	                final_left = left;
-	                final_right = right;
-	                final_top = start;
-	                final_bottom = finish;
-	            }
-     		}
-     	}
-     	// Print final values
-	    //printf("(Top, Left) (%d, %d)\n", final_top, final_left);
-	    //printf("(Bottom, Right) (%d, %d)\n", final_bottom, final_right);
-	    printf("%d\n", max_sum);
+              // maxSum and other output values
+              if (sum > max_sum)
+              {
+                  max_sum = sum;
+                  final_left = left;
+                  final_right = right;
+                  final_top = start;
+                  final_bottom = finish;
+              }
+        }
+      }
+      // Print final values
+      //printf("(Top, Left) (%d, %d)\n", final_top, final_left);
+      //printf("(Bottom, Right) (%d, %d)\n", final_bottom, final_right);
+      printf("%d\n", max_sum);
      
     return 0;
 }

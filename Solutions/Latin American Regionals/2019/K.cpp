@@ -14,37 +14,37 @@ typedef pair<int,int> ii;
 
 int main(){
 
-	fastio;
-	string cad;
-	cin >> cad;
-	vector<ll> vec;
-	for(int i = 1, x = 4; i < sz(cad); ++i, x += 2){
-		if(cad[i] != cad[i-1]){
-			vec.pb(1-x);
-		}
-	}
+  fastio;
+  string cad;
+  cin >> cad;
+  vector<ll> vec;
+  for(int i = 1, x = 4; i < sz(cad); ++i, x += 2){
+    if(cad[i] != cad[i-1]){
+      vec.pb(1-x);
+    }
+  }
 
-	vector<ll> poly;
-	poly.pb(1);
-	for(ll x : vec){
-		vector<ll> ans;
-		ans.assign(sz(poly)+1,0);
-		for(int i = 0; i < sz(poly); ++i){
-			ans[i+1] += poly[i];
-			ans[i] += x*poly[i];
-		}
-		poly = ans;
-	}
+  vector<ll> poly;
+  poly.pb(1);
+  for(ll x : vec){
+    vector<ll> ans;
+    ans.assign(sz(poly)+1,0);
+    for(int i = 0; i < sz(poly); ++i){
+      ans[i+1] += poly[i];
+      ans[i] += x*poly[i];
+    }
+    poly = ans;
+  }
 
-	if( (poly[0] > 0 and cad[0] == 'A') or (poly[0] < 0 and cad[0] == 'H')){
-		for(int i = 0; i < sz(poly); ++i)
-			poly[i] = -poly[i];
-	}
+  if( (poly[0] > 0 and cad[0] == 'A') or (poly[0] < 0 and cad[0] == 'H')){
+    for(int i = 0; i < sz(poly); ++i)
+      poly[i] = -poly[i];
+  }
 
-	cout << sz(poly)-1 << endl;
-	reverse(poly.begin(),poly.end());
-	for(ll x : poly) cout << x << " "; cout << endl;
+  cout << sz(poly)-1 << endl;
+  reverse(poly.begin(),poly.end());
+  for(ll x : poly) cout << x << " "; cout << endl;
 
-	return 0;
+  return 0;
 }
 

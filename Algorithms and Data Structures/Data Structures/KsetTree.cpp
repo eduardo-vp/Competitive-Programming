@@ -13,21 +13,21 @@ typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_
 
 /*Implementacion usada para el subregional de Moscow 2008*/
 template <class T> struct ord{
-	bool operator() (const ii &x, const ii& y) const{
-		if(x.fst != y.fst)
-			return x.fst > y.fst;
-		return x.snd < y.snd;
-	}
+  bool operator() (const ii &x, const ii& y) const{
+    if(x.fst != y.fst)
+      return x.fst > y.fst;
+    return x.snd < y.snd;
+  }
 };
 
 typedef tree< ii,string, ord<ii>,rb_tree_tag, tree_order_statistics_node_update> kset;
 
 int main(){
 
-	kset x;
+  kset x;
 
-	
+  
 
-	return 0;
+  return 0;
 }
 

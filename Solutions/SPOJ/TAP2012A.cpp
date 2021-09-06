@@ -20,30 +20,30 @@ typedef pair<int,int> ii;
 
 int main(){
 
-	fastio;	
-	int n;
-	while(cin>>n){
-		if(n==-1)break;
-		vector<int>v(n);
-		FER(i,0,n)cin>>v[i];
-		while(true){
-			int i;
-			//FER(i,0,n)cout<<"    "<<v[i];
-			//cout<<endl;
-			for(i=0;i<n;i++){
-				if(v[i]==i+1){
-					v[i]=0;
-					FER(j,0,i)v[j]++;
-					break;
-				}
-			}
-			if(i==n)break;
-		}
-		bool ans=true;
-		FER(i,0,n)if(v[i]!=0)ans=false;
-		if(ans)cout<<"S"<<endl;
-		else cout<<"N"<<endl;
-	
-	}
-	return 0;
+  fastio; 
+  int n;
+  while(cin>>n){
+    if(n==-1)break;
+    vector<int>v(n);
+    FER(i,0,n)cin>>v[i];
+    while(true){
+      int i;
+      //FER(i,0,n)cout<<"    "<<v[i];
+      //cout<<endl;
+      for(i=0;i<n;i++){
+        if(v[i]==i+1){
+          v[i]=0;
+          FER(j,0,i)v[j]++;
+          break;
+        }
+      }
+      if(i==n)break;
+    }
+    bool ans=true;
+    FER(i,0,n)if(v[i]!=0)ans=false;
+    if(ans)cout<<"S"<<endl;
+    else cout<<"N"<<endl;
+  
+  }
+  return 0;
 }

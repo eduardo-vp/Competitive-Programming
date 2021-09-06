@@ -59,30 +59,30 @@ HullDynamic lc;
 
 int main(){
 
-	int tc = 1;
-	while(scanf("%lld %lld %lld",&n,&c,&d)){
-		if(n == 0 and c == 0 and d == 0) break;
-		lc.clear();
-		lc.add(0,c);
-		vec.resize(n);
-		printf("Case %d: ",tc++);
-		FER(i,0,n) scanf("%lld %lld %lld %lld",&vec[i].ff.ff,&vec[i].ff.ss,&vec[i].ss.ff,&vec[i].ss.ss);
-		sort(vec.begin(),vec.end());
-		for(int i = 0; i < n; ){
-			vector<ii> lines;
-			do{
-				ll d = vec[i].ff.ff, p = vec[i].ff.ss, r = vec[i].ss.ff, g = vec[i].ss.ss;
-				ll best = lc.query(d-1);
-				if(best >= p){
-					ll a = d, b = best - p + r;
-					lines.pb(ii(g,b-g*a));
-				}
-				i++;
-			}while(i < n and vec[i].ff.ff == vec[i-1].ff.ff);
-			for(ii p : lines) lc.add(p.ff,p.ss);
-		}
-		printf("%lld\n",lc.query(d));
-	}
+  int tc = 1;
+  while(scanf("%lld %lld %lld",&n,&c,&d)){
+    if(n == 0 and c == 0 and d == 0) break;
+    lc.clear();
+    lc.add(0,c);
+    vec.resize(n);
+    printf("Case %d: ",tc++);
+    FER(i,0,n) scanf("%lld %lld %lld %lld",&vec[i].ff.ff,&vec[i].ff.ss,&vec[i].ss.ff,&vec[i].ss.ss);
+    sort(vec.begin(),vec.end());
+    for(int i = 0; i < n; ){
+      vector<ii> lines;
+      do{
+        ll d = vec[i].ff.ff, p = vec[i].ff.ss, r = vec[i].ss.ff, g = vec[i].ss.ss;
+        ll best = lc.query(d-1);
+        if(best >= p){
+          ll a = d, b = best - p + r;
+          lines.pb(ii(g,b-g*a));
+        }
+        i++;
+      }while(i < n and vec[i].ff.ff == vec[i-1].ff.ff);
+      for(ii p : lines) lc.add(p.ff,p.ss);
+    }
+    printf("%lld\n",lc.query(d));
+  }
 
-	return 0;
+  return 0;
 }

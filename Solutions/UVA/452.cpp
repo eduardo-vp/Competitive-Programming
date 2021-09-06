@@ -24,72 +24,72 @@ ll visited[50],dist[50];
 stack<int> topo;
 
 void dfs(int x){
-	visited[x] = 1;
-	for(int i = 0; i < int(g[x].size()); i++){
-		int v = g[x][i];
-		if(!visited[v])
-			dfs(v);
-	}
-	topo.push(x);
+  visited[x] = 1;
+  for(int i = 0; i < int(g[x].size()); i++){
+    int v = g[x][i];
+    if(!visited[v])
+      dfs(v);
+  }
+  topo.push(x);
 }
 
 void toposort(){
-	fill(visited,0);
-	for(int i = 0; i < int(in.size()); i++)
-		if(!visited[in[i]])
-			dfs(in[i]);
+  fill(visited,0);
+  for(int i = 0; i < int(in.size()); i++)
+    if(!visited[in[i]])
+      dfs(in[i]);
 }
 
 ll solve(){
-	ll ans = 0LL;
-	while(!topo.empty()){
-		int x = topo.top(); topo.pop();
-		ans = max(ans,dist[x]);
-		for(int i = 0; i < int(g[x].size()); i++){
-			int v = g[x][i];
-			dist[v] = max(dist[v],dist[x]+costs[v]);
-			ans = max(ans,dist[v]);
-		}
-	}
-	return ans;
+  ll ans = 0LL;
+  while(!topo.empty()){
+    int x = topo.top(); topo.pop();
+    ans = max(ans,dist[x]);
+    for(int i = 0; i < int(g[x].size()); i++){
+      int v = g[x][i];
+      dist[v] = max(dist[v],dist[x]+costs[v]);
+      ans = max(ans,dist[v]);
+    }
+  }
+  return ans;
 }
 
 int main(){
 
-	int tc;
-	cin >> tc;
-	cin.ignore(); cin.ignore();
-	bool spc = false;
-	while(tc--){
-		if(!spc) spc = true;
-		else cout << endl;
-		string cad;
-		int cont = 0;
-		g.assign(30, vector<int>() );
-		fill(dist,-1);
-		while(getline(cin,cad)){
-			if(cad.compare("") == 0) break;
-			char ver,v; int cost;
-			istringstream iss(cad);
-			iss >> v >> cost;
-			if(getId.count(v) == 0)
-				getId[v] = cont++;
-			bool flag = false;
-			costs[getId[v]] = cost;
-			while(iss >> ver){
-				flag = true;
-				if(getId.count(ver) == 0)
-					getId[ver] = cont++;
-				g[getId[ver]].pb(getId[v]);
-			}
-			if(!flag)
-				in.pb(getId[v]), dist[getId[v]] = cost;
-		}
-		toposort();
-		ll ans = solve();
-		cout << ans << endl;
-		g.clear(); in.clear(); getId.clear();
-	}
+  int tc;
+  cin >> tc;
+  cin.ignore(); cin.ignore();
+  bool spc = false;
+  while(tc--){
+    if(!spc) spc = true;
+    else cout << endl;
+    string cad;
+    int cont = 0;
+    g.assign(30, vector<int>() );
+    fill(dist,-1);
+    while(getline(cin,cad)){
+      if(cad.compare("") == 0) break;
+      char ver,v; int cost;
+      istringstream iss(cad);
+      iss >> v >> cost;
+      if(getId.count(v) == 0)
+        getId[v] = cont++;
+      bool flag = false;
+      costs[getId[v]] = cost;
+      while(iss >> ver){
+        flag = true;
+        if(getId.count(ver) == 0)
+          getId[ver] = cont++;
+        g[getId[ver]].pb(getId[v]);
+      }
+      if(!flag)
+        in.pb(getId[v]), dist[getId[v]] = cost;
+    }
+    toposort();
+    ll ans = solve();
+    cout << ans << endl;
+    g.clear(); in.clear(); getId.clear();
+  }
 
-	return 0;
+  return 0;
 }

@@ -17,7 +17,7 @@ struct Node{
       rev = 0;
       swap(l, r);
       if(l) l->rev = !l->rev; 
-	  if(r) r->rev = !r->rev;
+    if(r) r->rev = !r->rev;
     }
   }
 };
@@ -42,7 +42,7 @@ void splay(Node *x){
     Node *p = x->p, *g = p->p;
     if(!p->isRoot()) g->push();
     p->push(); 
-	x->push();
+  x->push();
     if(!p->isRoot()) rotate((x == p->l) == (p == g->l) ? p : x);
     rotate(x);
   }
@@ -52,26 +52,26 @@ void splay(Node *x){
 Node* expose(Node *x){
   Node *last = 0;
   for(Node *y = x; y; y = y->p) 
-  	splay(y), y->l = last, last = y;
+    splay(y), y->l = last, last = y;
   splay(x);
   return last;
 }
 
 void makeRoot(Node *x){
-	expose(x); 
-	x->rev = !x->rev;
+  expose(x); 
+  x->rev = !x->rev;
 }
 
 bool connected(Node *x, Node *y){
-	if(x == y) return true; 
-	expose(x); 
-	expose(y); 
-	return x->p != 0;
+  if(x == y) return true; 
+  expose(x); 
+  expose(y); 
+  return x->p != 0;
 }
 
 void link(Node *x, Node *y){
-	makeRoot(x); 
-	x->p = y;
+  makeRoot(x); 
+  x->p = y;
 }
 
 void cut(Node *x, Node *y){

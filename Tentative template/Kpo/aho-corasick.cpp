@@ -94,31 +94,31 @@ void search(){
 }
  
 int main(){
- 	int k;
- 	scanf("%d",&k);
- 	while(k--){
-	    scanf("%s" , T ) ;
-	    int q;
-	    scanf("%d" , &q ) ;
-	    init() ;
-	    int j;
-	    for(j=0;T[j];j++){
-	    	for(char c='A';c<='Z';c++) sig[j][c] = 0;
-	    	for(char c='a';c<='z';c++) sig[j][c] = 0;
-	    	final[j].clear();
-	    }
-	    for(char c='A';c<='Z';c++) sig[j][c] = 0;
-	    for(char c='a';c<='z';c++) sig[j][c] = 0;
-	    final[j].clear();
-	    char s[ 1010 ] ;
-	    f( i , 0 , q ){
-	        scanf("%s" , s ) ;
-	        add( s , i ) ;
-	    }
-	    
-	    build() ;
-	    search() ;
-	    f( i , 0 , q ) printf("%s\n" , enc[ i ] ? "y" : "n" ) ;
+  int k;
+  scanf("%d",&k);
+  while(k--){
+      scanf("%s" , T ) ;
+      int q;
+      scanf("%d" , &q ) ;
+      init() ;
+      int j;
+      for(j=0;T[j];j++){
+        for(char c='A';c<='Z';c++) sig[j][c] = 0;
+        for(char c='a';c<='z';c++) sig[j][c] = 0;
+        final[j].clear();
+      }
+      for(char c='A';c<='Z';c++) sig[j][c] = 0;
+      for(char c='a';c<='z';c++) sig[j][c] = 0;
+      final[j].clear();
+      char s[ 1010 ] ;
+      f( i , 0 , q ){
+          scanf("%s" , s ) ;
+          add( s , i ) ;
+      }
+      
+      build() ;
+      search() ;
+      f( i , 0 , q ) printf("%s\n" , enc[ i ] ? "y" : "n" ) ;
     }
     return 0 ;
 }

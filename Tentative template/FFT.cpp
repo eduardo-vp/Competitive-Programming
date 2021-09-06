@@ -66,9 +66,9 @@ struct FFT{
         FER(i,1,n+1) roots[i]=roots[i-1]*mult;
     }
     inline void transform(bool inverse=false){
-		vector<cpx> temp(n);
-		FER(i,0,n) temp[i]=data[rev[i]];
-		FER(i,0,n) data[i]=temp[i];
+    vector<cpx> temp(n);
+    FER(i,0,n) temp[i]=data[rev[i]];
+    FER(i,0,n) data[i]=temp[i];
         FER(i,1,s+1){
             ll m=(1<<i), md2=m/2;
             ll start=0, incr=(1<<(s-i));
@@ -88,10 +88,10 @@ struct FFT{
     }
 };
 inline void build(vi &a, FFT &f, ll y, ll n){
-	f.init(y);
-	FER(i, 0, sz(a)) f.data[i]=cpx(a[i], 0);
-	FER(i,sz(a), n) f.data[i]=cpx(0, 0);
-	f.transform();
+  f.init(y);
+  FER(i, 0, sz(a)) f.data[i]=cpx(a[i], 0);
+  FER(i,sz(a), n) f.data[i]=cpx(0, 0);
+  f.transform();
 }
 inline vi GetConvolution(vi &a, vi &b){
     ll t1=sz(a), t2=sz(b), ta=t1+t2-1, x=0, n;

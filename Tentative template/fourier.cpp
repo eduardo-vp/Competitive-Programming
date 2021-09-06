@@ -47,23 +47,23 @@ void FFT(cpx *in, cpx *out, int step, int size, int dir)
 
 
 int main() {
-	//Agregar ceros si tam no es potencia de 2
-	
-	FFT(a,A,1,tam,1); // PASO 1
-	FFT(b,B,1,tam,1); // PASO 1
+  //Agregar ceros si tam no es potencia de 2
+  
+  FFT(a,A,1,tam,1); // PASO 1
+  FFT(b,B,1,tam,1); // PASO 1
  
-	
-	for(int i = 0 ; i < tam ; i++){		//PASO 2
-    	AB[i] = A[i] * B[i];			//PASO 2
-	}
-	
-    FFT(AB, aconvb, 1, tam, -1);		//PASO 3		
-	
-	for(int i=0;i<tam;i++)		{				//PASO 3
-		aconvb[i] = aconvb[i]/(1.0*tam);		//PASO 3
-	}
-	for(int i=0;i<tam;i++){
-		cout<<aconvb[i].real()<<" ";
-	}
-	return 0;
+  
+  for(int i = 0 ; i < tam ; i++){   //PASO 2
+      AB[i] = A[i] * B[i];      //PASO 2
+  }
+  
+    FFT(AB, aconvb, 1, tam, -1);    //PASO 3    
+  
+  for(int i=0;i<tam;i++)    {       //PASO 3
+    aconvb[i] = aconvb[i]/(1.0*tam);    //PASO 3
+  }
+  for(int i=0;i<tam;i++){
+    cout<<aconvb[i].real()<<" ";
+  }
+  return 0;
 }

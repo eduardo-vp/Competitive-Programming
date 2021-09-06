@@ -17,13 +17,13 @@ typedef pair<int,int> ii;
 
 int main(){
 
-	long double n,c,m;
+  long double n,c,m;
 
-	while(cin >> n >> c >> m){
-		long double ans = (n)*c + (c-1)*c;
-		ans /= (c+n-m-1)*(c+n);
-		cout << setprecision(5) << fixed << ans << endl;
-	}
+  while(cin >> n >> c >> m){
+    long double ans = (n)*c + (c-1)*c;
+    ans /= (c+n-m-1)*(c+n);
+    cout << setprecision(5) << fixed << ans << endl;
+  }
 
-	return 0;
+  return 0;
 }
