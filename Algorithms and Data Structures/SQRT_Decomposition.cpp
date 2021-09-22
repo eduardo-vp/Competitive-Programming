@@ -26,20 +26,20 @@ T query_block(int pos) {
 void update(int l, int r, int x) {
   if (block_id[l] == block_id[r]) {
     for(int i = l; i < r; ++i){
-      update_pos();
+      update_pos(i);
     }
     return;
   }
   while (l % SQ) {
-    update_pos();
+    update_pos(l);
     l++;
   }
   while (r % SQ) {
     r--;
-    update_pos();
+    update_pos(r);
   }
   for (int i = block_id[l]; i < block_id[r]; ++i) {
-    update_block();
+    update_block(i);
   }
 }
 
@@ -48,20 +48,20 @@ int query(int l, int r) {
   int ans = 0;
   if (block_id[l] == block_id[r]) {
     for (int i = l; i < r; ++i) {
-      query_pos();
+      query_pos(i);
     }
     return ans;
   }
   while (l % SQ) {
-    query_pos();
+    query_pos(l);
     l++;
   }
   while (r % SQ) {
     r--;
-    query_pos();
+    query_pos(r);
   }
   for (int i = block_id[l]; i < block_id[r]; ++i) {
-    query_block();
+    query_block(i);
   }
   return ans;
 }
