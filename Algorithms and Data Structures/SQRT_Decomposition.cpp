@@ -4,48 +4,64 @@
 // BL = Number of blocks
 const int SQ = 2000, N = 1e5 + 100, BL = 52;
 
-int id[N];
+int block_id[N];
+
+void update_pos(int pos) {
+  // update position
+}
+
+void update_block(int pos) {
+  // update block
+}
+
+T query_pos(int pos) {
+  // query pos
+}
+
+T query_block(int pos) {
+  // query block
+}
 
 // interval [l,r)
-void update(int l, int r, int x){
-  if(id[l] == id[r]){
+void update(int l, int r, int x) {
+  if (block_id[l] == block_id[r]) {
     for(int i = l; i < r; ++i){
-      // update position
+      update_pos();
     }
     return;
   }
-  while(l % SQ){
-    // update position
+  while (l % SQ) {
+    update_pos();
     l++;
   }
-  while(r % SQ){
+  while (r % SQ) {
     r--;
-          // update position
+    update_pos();
   }
-  for(int i = id[l]; i < id[r]; ++i){
-    // update block
+  for (int i = block_id[l]; i < block_id[r]; ++i) {
+    update_block();
   }
 }
 
 // interval [l,r)
-int query(int l, int r){
+int query(int l, int r) {
   int ans = 0;
-  if(id[l] == id[r]){
-    for(int i = l; i < r; ++i){
-      // query position
+  if (block_id[l] == block_id[r]) {
+    for (int i = l; i < r; ++i) {
+      query_pos();
     }
     return ans;
   }
-  while(l % SQ){
-    // query position
+  while (l % SQ) {
+    query_pos();
     l++;
   }
-  while(r % SQ){
+  while (r % SQ) {
     r--;
-    // query position
+    query_pos();
   }
-  for(int i = id[l]; i < id[r]; ++i){
-    // query block
+  for (int i = block_id[l]; i < block_id[r]; ++i) {
+    query_block();
   }
   return ans;
 }
@@ -53,7 +69,9 @@ int query(int l, int r){
 int main(){
 
   fastio;
-  REP(i,N) id[i] = i/SQ;
-  
+  for (int i = 0; i < N; ++i) {
+    block_id[i] = i / SQ;
+  }
+
   return 0;
 }
