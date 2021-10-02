@@ -12,8 +12,8 @@ struct Dinic{
   vector<vector<edge>> g;
   Dinic(int x):nodes(x),g(x),dist(x),q(x),work(x){}
   void add_edge(int s, int t, ll cap){
-    g[s].push_back((edge){t,sz(g[t]),0,cap});
-    g[t].push_back((edge){s,sz(g[s])-1,0,0});
+    g[s].push_back((edge){t,int(g[t].size()),0,cap});
+    g[t].push_back((edge){s,int(g[s].size())-1,0,0});
   }
   bool dinic_bfs(){
     fill(dist.begin(),dist.end(),-1);
