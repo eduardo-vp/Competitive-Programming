@@ -1,4 +1,4 @@
-/* Gracias El vasito  
+/* Gracias El vasito
    Dinic Max Flow
    Intrucciones de uso:
       Min cut: nodes with dist>=0 vs nodes with dist<0
@@ -12,8 +12,8 @@ struct Dinic{
   vector<vector<edge>> g;
   Dinic(int x):nodes(x),g(x),dist(x),q(x),work(x){}
   void add_edge(int s, int t, ll cap){
-    g[s].pb((edge){t,sz(g[t]),0,cap});
-    g[t].pb((edge){s,sz(g[s])-1,0,0});
+    g[s].push_back((edge){t,sz(g[t]),0,cap});
+    g[t].push_back((edge){s,sz(g[s])-1,0,0});
   }
   bool dinic_bfs(){
     fill(dist.begin(),dist.end(),-1);
@@ -37,9 +37,9 @@ struct Dinic{
       int v = e.to;
       if(dist[v] == dist[u]+1){
         ll df = dinic_dfs(v,min(f,e.cap-e.f));
-        if(df>0){ 
-          e.f += df; 
-          g[v][e.rev].f -= df; 
+        if(df>0){
+          e.f += df;
+          g[v][e.rev].f -= df;
           return df;
         }
       }
