@@ -12,7 +12,8 @@ struct BipMatching {
     adj.resize(nil + 1);
   }
   void add_edge(int x, int y) {
-    adj[x].push_back(y);
+    assert(y >= 0 && y < m);
+    adj[x].push_back(y + n);
   }
   bool bfs() {
     queue<int> q;
