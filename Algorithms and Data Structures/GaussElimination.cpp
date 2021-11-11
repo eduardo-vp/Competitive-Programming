@@ -4,6 +4,7 @@ typedef long double db;
 const db eps = 1e-9;
 const int inf = 2; // just more than 1 is needed
 
+// returns number or solutions (0, 1 or inf)
 int gauss (vector< vector<db> > a, vector<db> &ans) {
   int n = a.size();
   int m = int(a[0].size()) - 1;
