@@ -1,7 +1,7 @@
 /*
 https://codeforces.com/blog/entry/74148?#comment-586706
-I highly dissuade hashing (multi)sets modulo a prime. Instead: assign random 64bit integer for each element, 
-and use xor/sum of all elements as hash of the whole set (xor if we are guaranteed there are no repetitions, 
+I highly dissuade hashing (multi)sets modulo a prime. Instead: assign random 64bit integer for each element,
+and use xor/sum of all elements as hash of the whole set (xor if we are guaranteed there are no repetitions,
 or we do want repetitions to cancel out, sum if we're hashing a multiset). To get those values of each element
 I use following function:
 
@@ -10,7 +10,7 @@ ull mix(ull o){
     o=(o^(o>>30))*0xbf58476d1ce4e5b9;
     o=(o^(o>>27))*0x94d049bb133111eb;
     return o^(o>>31);
-    //Those constants supposedly are chosen to give this function better pseudo-random properties, 
+    //Those constants supposedly are chosen to give this function better pseudo-random properties,
     but on any on-site contest, when one can't have team reference document/doesn't want to waste time
     searching it for implementation typing arbitrary large odd numbers by hand should be good enough
 }
@@ -22,11 +22,11 @@ paradox issues, also avoids any overflows/issues with and requires way less code
 
 Moreover this technique can be used for hashing other objects than sets, e.g. sequences, which can be represented
 as set of pairs (i,ai), the only difference is that now we need random value for each pair, but this can be easily
-done e.g. by
+done e.g. by:
 
 ull hash(pii a) {return mix(a.first ^ mix(a.second));}
 
-And finally: using well-known modulos is not an issue, as long as you use random number as base 
+And finally: using well-known modulos is not an issue, as long as you use random number as base
 (guaranteed by Schwartz–Zippel lemma).
 */
 
@@ -74,7 +74,7 @@ namespace std{
     }
   };
 }
-// Then declare unordered_maps as 
+// Then declare unordered_maps as
 unordered_map<Hashes,[type]> h;
 
 // Hash strings
