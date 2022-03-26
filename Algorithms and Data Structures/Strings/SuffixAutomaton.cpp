@@ -7,7 +7,7 @@ struct state{
   // size: size of the set endpos
   int len, link, size;
   int next[ALPH];
-  state() { cnt = 0; memset(next, -1, sizeof(next)); }
+  state() { size = 0; memset(next, -1, sizeof(next)); }
 };
 
 struct SuffixAutomaton{
