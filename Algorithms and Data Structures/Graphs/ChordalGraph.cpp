@@ -1,4 +1,12 @@
 
+/* Chordal graph: graph in which all cycles of four or more vertices have a chord, which is an edge that is not part of the cycle
+but connects two vertices of the cycle. Equivalently, every induced cycle in the graph should have exactly three vertices
+
+A perfect elimination ordering in a graph is an ordering of the vertices of the graph such that, 
+for each vertex v, v and the neighbors of v that occur after v in the order form a clique. 
+A graph is chordal if and only if it has a perfect elimination ordering.
+*/
+
 // Call is_chordal(n) to check if it's a chordal graph
 // Array pos[N] has the Perfect elimination order if true
 
