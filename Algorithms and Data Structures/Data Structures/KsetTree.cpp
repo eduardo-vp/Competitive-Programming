@@ -1,4 +1,3 @@
-#include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/detail/standard_policies.hpp>
 using namespace __gnu_pbds;
@@ -21,13 +20,3 @@ template <class T> struct ord{
 };
 
 typedef tree< ii,string, ord<ii>,rb_tree_tag, tree_order_statistics_node_update> kset;
-
-int main(){
-
-  kset x;
-
-  
-
-  return 0;
-}
-
