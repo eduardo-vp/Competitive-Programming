@@ -11,25 +11,25 @@ g++ main.cpp -std=c++17 -o main
 for((i = 1; ; i++)); do
 	echo "Running on test ${i}"
 	
-    # generate input
-    ./gen $i > test
+	# generate input
+	./gen $i > test
 	
-    # generate correct output
-    ./ac < test > out1
-
-    # test python solution main.py 
-    # python main.py < test > out1
-
-    # test cpp solution main.cpp
-    ./main < test > out2
+	# generate correct output
+	./ac < test > out1
+	
+	# test python solution main.py 
+	# python main.py < test > out1
+	
+	#test cpp solution main.cpp
+	./main < test > out2
 
 	# print "Ok" if code finished successfully (no RTE)
-    # break if 
-    if [ $? -eq 0 ]
+	# break otherwise
+	if [ $? -eq 0 ]
 	then
 		echo "Ok"
 	else
-        echo "RTE"
+		echo "RTE"
 		break
 	fi
 
