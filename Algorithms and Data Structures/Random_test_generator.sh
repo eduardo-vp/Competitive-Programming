@@ -1,8 +1,11 @@
+# gen: generates random input
+# ac: correct code
+# main.cpp/main.py: code to test
+
 echo "Compiling gen.cpp"
 g++ gen.cpp -std=c++17 -o gen
 echo "Compiling ac.cpp"
 g++ ac.cpp -std=c++17 -o ac
-# make ac
 echo "Compiling main.cpp"
 g++ main.cpp -std=c++17 -o main
 
