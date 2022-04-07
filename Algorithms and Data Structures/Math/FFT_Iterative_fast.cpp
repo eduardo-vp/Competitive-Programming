@@ -52,7 +52,7 @@ vector<ll> multiply(vector<ll> x, vector<ll> y) {
   fft (fa, true);
  
   vector<ll> res(x.size() + y.size() - 1);
-  for (int i=0; i<(int)res.size(); ++i)
+  for (int i = 0; i < (int)res.size(); ++i)
     res[i] = (ll) (fa[i].real() + 0.5); 
   return res;
 }
