@@ -2,7 +2,7 @@
 template<typename T>
 struct Bit2D {
   int n, m;
-  vector< vector<int> > bit;
+  vector< vector<T> > bit;
  
   Bit2D(int n, int m): n(n), m(m) {
     bit.resize(n);
