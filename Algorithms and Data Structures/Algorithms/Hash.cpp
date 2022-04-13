@@ -77,6 +77,19 @@ namespace std{
 // Then declare unordered_maps as
 unordered_map<Hashes,[type]> h;
 
+// Efficient tree hash, thanks Sana <3
+typedef unsigned long long ull;
+unordered_map<ull,ull> hashes;
+
+ull hash_tree(int u, int p) {
+  ull hash = 0;
+  for (int v : adj[u]) if (v != p) {
+    hash += hash_tree(v, u);
+  }
+  if (!hashes.count(hash)) hashes[hash] = rng(); // assign random
+  return hashes[hash];
+}
+
 // Hash strings
 // Gracias el vasito
 struct Hash {
