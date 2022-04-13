@@ -1,10 +1,10 @@
 
 template<typename T>
-struct Bit2D {
+struct Fenwick2D {
   int n, m;
   vector< vector<T> > bit;
  
-  Bit2D(int n, int m): n(n), m(m) {
+  Fenwick2D(int n, int m): n(n), m(m) {
     bit.resize(n);
     for (int i = 0; i < n; ++i) {
       bit[i].resize(m);
