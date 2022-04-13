@@ -1,10 +1,10 @@
 
 template<typename T>
-struct Bit {
+struct Fenwick {
   int n;
   vector<T> bit;
 
-  Bit(int n): n(n) {
+  Fenwick(int n): n(n) {
     bit.resize(n);
   }
 
