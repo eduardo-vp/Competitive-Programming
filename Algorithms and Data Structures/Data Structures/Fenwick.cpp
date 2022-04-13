@@ -15,6 +15,7 @@ struct Fenwick {
     }
   }
 
+  // query in [0, x]
   T get(int x) {
     T v{};
     while (x >= 0) {
@@ -24,6 +25,7 @@ struct Fenwick {
     return v;
   }
 
+  // query in [l, r]
   T get(int l, int r) {
     return get(r) - get(l - 1);
   }
