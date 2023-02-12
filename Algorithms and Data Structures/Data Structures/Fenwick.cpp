@@ -8,7 +8,7 @@ struct Fenwick {
     bit.resize(n + 1);
   }
 
-  // update a[x]
+  // x: 0-indexed
   void update(int x, T v) {
     x++;
     while (x < n) {
