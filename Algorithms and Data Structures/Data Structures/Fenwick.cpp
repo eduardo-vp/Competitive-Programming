@@ -4,30 +4,26 @@ struct Fenwick {
   int n;
   vector<T> bit;
 
-  Fenwick(int n): n(n) {
-    bit.resize(n);
+  Fenwick(int n): n(n + 1) {
+    bit.resize(n + 1);
   }
 
-  void modify(int x, T v) {
+  // update a[x]
+  void update(int x, T v) {
+    x++;
     while (x < n) {
       bit[x] += v;
-      x = x | (x + 1);
+      x += x & -x;
     }
   }
 
-  // query in [0, x]
+  // sum in [0, x)
   T get(int x) {
-    T v{};
-    while (x >= 0) {
+    auto v = T();
+    while (x > 0) {
       v += bit[x];
-      x = (x & (x + 1)) - 1;
+      x -= x & -x;
     }
     return v;
   }
-
-  // query in [l, r]
-  T get(int l, int r) {
-    return get(r) - get(l - 1);
-  }
 };
-
