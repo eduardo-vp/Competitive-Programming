@@ -1,3 +1,4 @@
+// requires point.cpp
 
 // Minkowski sum in O(n + m)
 // A and B should be in anti-clockwise order
