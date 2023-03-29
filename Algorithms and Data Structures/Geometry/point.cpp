@@ -19,3 +19,8 @@ struct Point {
     return abs(x - p.x) <= EPS && abs(y - p.y) <= EPS;
   }
 };
+
+double dot(Point p, Point q) { return p.x * q.x + p.y * q.y; }
+double norm2(Point p) { return dot(p, p); }
+double norm(Point p) { return sqrt(norm2(p)); }
+double cross(Point p, Point q) { return p.x * q.y - p.y * q.x; }
