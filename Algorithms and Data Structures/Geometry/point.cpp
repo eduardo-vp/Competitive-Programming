@@ -9,6 +9,15 @@ struct Point {
   Point operator * (double c) const { return Point(x * c, y * c ); }
   Point operator / (double c) const { return Point(x / c, y / c ); }
 
+  double dot(Point p) { return x * p.x + y * p.y; }
+  double norm2() { return this->dot(*this); }
+  double norm() { return sqrt(norm2()); }
+  double cross(Point p) { return x * p.y - y * p.x; }
+  bool left(Point p, Point q) { // is the point to the left of the directed line pq?
+    // return (q - p).cross(*this) > 0;
+    return (q - p).cross(*this - p) > EPS;
+  }
+
   // for convex hull
   bool operator < (const Point &p) const {
     // return x < p.x || (x == p.x && y < p.y);
@@ -19,8 +28,3 @@ struct Point {
     return abs(x - p.x) <= EPS && abs(y - p.y) <= EPS;
   }
 };
-
-double dot(Point p, Point q) { return p.x * q.x + p.y * q.y; }
-double norm2(Point p) { return dot(p, p); }
-double norm(Point p) { return sqrt(norm2(p)); }
-double cross(Point p, Point q) { return p.x * q.y - p.y * q.x; }
