@@ -1,10 +1,10 @@
 
 double dot(Point o, Point p, Point q) {
-  return dot(p - o, q - o);
+  return (p - o).dot(q - o);
 }
 
 double cross(Point o, Point p, Point q) {
-  return cross(p - o, q - o);
+  return (p - o).cross(q - o);
 }
 
 vector<Point> convex_hull(vector<Point> &P){
