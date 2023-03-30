@@ -14,7 +14,7 @@ struct Point {
   double norm() { return sqrt(norm2()); }
   double cross(Point p) { return x * p.y - y * p.x; }
   bool left(Point p, Point q) { // is the point to the left of the directed line pq?
-    // return (q - p).cross(*this) > 0;
+    // return (q - p).cross(*this - p) > 0;
     return (q - p).cross(*this - p) > EPS;
   }
 
