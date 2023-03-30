@@ -22,7 +22,7 @@ vector<Point> minkow_sum(const vector<Point>& a, const vector<Point>& b) {
     out.push_back(a[i] + b[j]);
     nxti = (i + 1) % lena;
     nxtj = (j + 1) % lenb;
-    pr = cross(a[nxti] - a[i], b[nxtj] - b[j]);
+    pr = (a[nxti] - a[i]).cross(b[nxtj] - b[j]);
     if (pr > 0) i = nxti;
     else if (pr < 0) j = nxtj;
     else i = nxti, j = nxtj; // paralelas, subo en ambas
