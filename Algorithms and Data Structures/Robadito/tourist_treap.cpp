@@ -192,7 +192,6 @@ namespace treap {
       return v;
     }
     if (v->P > u->P) {
-//    if (rng() % (v->sz + u->sz) < (unsigned int) v->sz) {
       v->push();
       v->r = merge(v->r, u);
       v->pull();
