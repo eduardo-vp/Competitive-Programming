@@ -16,3 +16,11 @@ int extended_euclid(int a, int b, int &x, int &y) {
 // let p1, p2, ..., pk be the distinct primes dividing x, then
 // phi(x) = x * (1 - (1 / p1)) * (1 - (1 / p2)) * ... * (1 - (1 / pk))
 
+int phi(int x) {
+  int ans = x;
+  // primes[x] = primes that divide x
+  for (int p: primes[x]) {
+    ans -= ans / p;
+  }
+  return ans;
+}
