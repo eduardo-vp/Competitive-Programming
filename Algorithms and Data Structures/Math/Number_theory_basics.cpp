@@ -11,3 +11,8 @@ int extended_euclid(int a, int b, int &x, int &y) {
   }
   return a;
 }
+
+// let phi(x) = number of integers y < x such that gcd(x, y) = 1
+// let p1, p2, ..., pk be the distinct primes dividing x, then
+// phi(x) = x * (1 - (1 / p1)) * (1 - (1 / p2)) * ... * (1 - (1 / pk))
+
