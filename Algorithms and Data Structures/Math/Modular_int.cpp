@@ -124,7 +124,8 @@ U& operator>>(U& stream, Modular<T>& number) {
   return stream;
 }
  
-constexpr int md = (int) 998244353;
+// declare mod here
+// constexpr int md = (int) 998244353;
 using Mint = Modular<std::integral_constant<decay<decltype(md)>::type, md>>;
  
 vector<Mint> fact(1, 1);
